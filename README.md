@@ -1,16 +1,10 @@
 # miked_care
 
-A new Flutter project.
+Therapy App
+## How to run 
 
-## Getting Started
+1.Clone the repository ie Go to Android Studio and click new then import project from version control then paste the link to the repository.
 
-This project is a starting point for a Flutter application.
+2.Ensure you push to a different branch and create a pull request.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
