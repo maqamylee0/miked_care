@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/login.dart';
+import 'package:miked_care/verify_code.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -169,7 +170,10 @@ class _SignUpState extends State<SignUp> {
     );
   }
   void onPressed() {
-
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const VerifyOne())
+    );
   }
   void onPressed2() {
     Navigator.push(

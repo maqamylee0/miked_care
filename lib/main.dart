@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miked_care/login.dart';
 import 'package:miked_care/signup.dart';
+import 'package:miked_care/success_verify.dart';
 import 'package:miked_care/verify_code.dart';
 
 void main() {
@@ -8,6 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
@@ -15,10 +17,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-
-        primarySwatch: Colors.cyan,
-      ),
-      home: VerifyOne(),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+      primary: const Color(0xFF16E4E4),
+      // secondary: const Color(0xFFFFC107),
+        // primaryColor: Colors.cyanAccent,
+      )),
+      home: Login(),
     );
   }
 }
