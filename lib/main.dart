@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miked_care/login.dart';
 import 'package:miked_care/signup.dart';
+import 'package:miked_care/verify_code.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.cyan,
       ),
-      home: const Login(),
+      home: VerifyOne(),
     );
   }
 }
