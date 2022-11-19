@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miked_care/login.dart';
+import 'package:miked_care/signup.dart';
 
 void main() {
   runApp(const MyApp());
