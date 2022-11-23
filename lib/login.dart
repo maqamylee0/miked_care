@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:miked_care/forgotpassword.dart';
 import 'package:miked_care/signup.dart';
 
 class Login extends StatefulWidget {
@@ -86,7 +87,7 @@ class _LoginState extends State<Login> {
                   children: [
 
                     SizedBox(width: 100,),
-                    TextButton(onPressed:(){onPressed();},child:
+                    TextButton(onPressed:(){onPressed2();},child:
                     Text("Forgot your password?",style: TextStyle(color: Colors.red)))
                   ],
                 ),
@@ -122,7 +123,10 @@ class _LoginState extends State<Login> {
     );
   }
   void onPressed2() {
-
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ForgotPassword())
+    );
   }
 
 }
