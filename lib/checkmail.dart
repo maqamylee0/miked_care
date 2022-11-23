@@ -18,17 +18,23 @@ class _CheckEmailState extends State<CheckEmail> {
 
 
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 100),
-                    Text("Welcome Back!",style:Theme.of(context).textTheme.headline6,),
+                    SizedBox(height: 200),
+                    Text("Check your mail",style:TextStyle(color: Colors.black,fontSize: 32,fontWeight: FontWeight.bold),),
                     SizedBox(height: 10,),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(60, 10, 40, 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("We sent a password link to \n"
+                              "      johndoe@gmail.com", style: TextStyle(fontSize: 12.5)),
 
-                    Text("Log in", style: TextStyle(color: Colors.black,fontSize: 27,fontWeight: FontWeight.bold)),
-                    SizedBox(height: 70),
+                        ],
 
-
-
+                      ),
+                    ),
 
 
                     SizedBox(height:60),

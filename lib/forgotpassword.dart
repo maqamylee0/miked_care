@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:miked_care/checkmail.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -77,5 +78,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     );
   }
 
-  void onPressed() {}
+  void onPressed() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const CheckEmail())
+    );
+  }
 }
