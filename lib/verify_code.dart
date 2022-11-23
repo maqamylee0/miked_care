@@ -26,7 +26,9 @@ class _VerifyOneState extends State<VerifyOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
+        body: SingleChildScrollView(
+          child:
+        Column(
     children: [
       SizedBox(height: 100,),
       Text("Verification", style: TextStyle(color: Colors.black,fontSize: 27,fontWeight: FontWeight.bold)),
@@ -153,7 +155,7 @@ class _VerifyOneState extends State<VerifyOne> {
 
       )],)
 
-    );
+    ));
 
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:miked_care/checkmail.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -8,6 +9,7 @@ class ForgotPassword extends StatefulWidget {
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
 }
+
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   TextEditingController _emailController = TextEditingController();
@@ -23,7 +25,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 200),
+                    SizedBox(height: 100),
+
+                    SizedBox(
+                      height: 100,
+                      width: 200,
+                      child: SvgPicture.asset("assets/logo.svg",height: 100,width: 100,),
+                    ),
 
                     Text("Forgot Password!",style:TextStyle(color: Colors.black,fontSize: 32,fontWeight: FontWeight.bold),),
                     SizedBox(height: 10,),
