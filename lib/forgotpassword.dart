@@ -25,13 +25,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 100),
+                    SizedBox(height: 30),
 
                     SizedBox(
-                      height: 100,
-                      width: 200,
-                      child: SvgPicture.asset("assets/logo.svg",height: 100,width: 100,),
+
+                      height: 150,
+                      width: 150,
+                      child:Image.asset("assets/logo_black.png",height: 200,width: 300),
+
+                      //Image.asset("assets/img.png")
                     ),
+                    SizedBox(height: 50),
 
                     Text("Forgot Password!",style:TextStyle(color: Colors.black,fontSize: 32,fontWeight: FontWeight.bold),),
                     SizedBox(height: 10,),

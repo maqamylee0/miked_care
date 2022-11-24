@@ -20,7 +20,15 @@ class _CheckEmailState extends State<CheckEmail> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 200),
+                    SizedBox(height: 30),
+                    SizedBox(
+
+                      height: 150,
+                      width: 150,
+                      child:Image.asset("assets/logo_black.png",height: 200,width: 300,),
+
+                      //Image.asset("assets/img.png")
+                    ),
                     Text("Check your mail",style:TextStyle(color: Colors.black,fontSize: 32,fontWeight: FontWeight.bold),),
                     SizedBox(height: 10,),
                     Container(
