@@ -1,0 +1,76 @@
+{
+  "id": "123",
+  "type": "navigable",
+  "rules": [
+    {
+      "type": "conditional",
+      "triggerStepIdentifier": {
+        "id": "3"
+      },
+      "values": {
+        "Yes": "2",
+        "No": "10"
+      }
+    },
+    {
+      "type": "direct",
+      "triggerStepIdentifier": {
+        "id": "1"
+      },
+      "destinationStepIdentifier": {
+        "id": "3"
+      }
+    },
+    {
+      "type": "direct",
+      "triggerStepIdentifier": {
+        "id": "2"
+      },
+      "destinationStepIdentifier": {
+        "id": "10"
+      }
+    }
+  ],
+  "steps": [
+
+
+    {
+      "stepIdentifier": {
+        "id": "1"
+      },
+      "type": "question",
+      "title": "Maternal and health questionaire(Postpartum)",
+      "text": "How old are you?(pls select the most appropriate age bracket for you)",
+      "answerFormat": {
+        "type": "single",
+        "textChoices": [{
+          "text": "8-14",
+          "value": "8-14"
+        },
+          {
+            "text": "15-20",
+            "value": "15-20"
+          },
+          {
+            "text": "21-30",
+            "value": "21-30"
+          },
+          {
+            "text": "31-59",
+            "value": "31-59"
+          }
+        ]
+
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "10"
+      },
+      "type": "completion",
+      "text": "Thanks for taking the survey, we will contact you soon!",
+      "title": "Done!",
+      "buttonText": "Submit survey"
+    }
+  ]
+}

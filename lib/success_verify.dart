@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:miked_care/survey/survey.dart';
 
 class VerifySuccess extends StatefulWidget {
   const VerifySuccess({Key? key}) : super(key: key);
@@ -36,5 +37,10 @@ class _VerifySuccessState extends State<VerifySuccess> {
     );
   }
 
-  void onPressed() {}
+  void onPressed() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Survey())
+    );
+  }
 }

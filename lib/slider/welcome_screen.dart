@@ -27,7 +27,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Text(
                     data.screenTitle,
                     style: TextStyle(
-                      color: data.sliderColor,
+                      color: Colors.black,
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'RobotoSlab',
@@ -37,23 +37,40 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Text(
                     data.screenDes,
                     style: TextStyle(
-                      color: data.sliderColor,
+                      color: Colors.black,
                       fontSize: 15,
                     ),
                   ),
                 ],
               ),
-              Image.asset(
-                "assets/logo_black.png",
+              Container(
+                width: 120,
+                child:ElevatedButton(
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            )
+                        )
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Login())
+                      );
+                    },
+                    child: Icon(Icons.arrow_forward,)
+                ) ,
               ),
+
               Column(
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const Login()));
+                          MaterialPageRoute(builder: (context) => const Login())
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

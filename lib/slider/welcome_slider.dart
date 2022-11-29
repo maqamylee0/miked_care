@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
+import '../login.dart';
 import '/slider/welcome_screen.dart';
 import '/slider/data.dart' as data;
 
@@ -23,8 +24,10 @@ class _WelcomeSliderState extends State<WelcomeSlider> {
 
   void onFinishSlider() {
     log("slider finish");
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const WelcomeScreen())
+    );
   }
 
   @override

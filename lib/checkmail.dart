@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:miked_care/new_password_set.dart';
+import 'package:miked_care/reset_password.dart';
 
 class CheckEmail extends StatefulWidget {
   const CheckEmail({Key? key}) : super(key: key);
@@ -69,5 +71,10 @@ class _CheckEmailState extends State<CheckEmail> {
     );
   }
 
-  void onPressed() {}
+  void onPressed() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ResetPass())
+    );
+  }
 }
