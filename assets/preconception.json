@@ -1,0 +1,177 @@
+{
+  "id": "123",
+  "type": "navigable",
+  "rules": [
+  ],
+
+  "steps": [
+    {
+      "stepIdentifier": {
+        "id": "1"
+      },
+      "type": "intro",
+      "title": "Welcome to the\nMikedcares app\npreconception Survey",
+      "text": "Get ready for a bunch of super random questions!",
+      "buttonText": "Let's go!"
+    },
+    {
+      "stepIdentifier": {
+        "id": "2"
+      },
+      "type": "question",
+      "title": "How old are you?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 20,
+        "hint": "Please enter your age"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "3"
+      },
+      "type": "question",
+      "title": "Preconception?",
+      "text": "Have you heard of preconception care?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "4"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Do you think you are ready to conceive?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "5"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Do you have fears about being a good mother or experiencing a healthy pregnancy?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "6"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Have you felt scared for no good reason in the last 2 weeks?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "7"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Do you think you will get support from your spouse & family during pregnancy?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "8"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Have you been so unhappy that find yourself crying?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "9"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "I understand that every pregnancy is unique and may result in different outcomes?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "10"
+      },
+      "type": "question",
+      "title": "PreConception",
+      "text": "Do you have an Medical History that can pose as risk to your Pregnancy?",
+
+
+      "answerFormat": {
+        "type": "multiple",
+        "textChoices": [{
+          "text": "Yes,I have a medical history of hypertension",
+          "value": "yes,I have a medical history of hypertension"
+        },
+          {
+            "text": "Yes,Have a medical History of Diabetes",
+            "value": "yes,Have a medical History of Diabetes"
+          },
+          {
+            "text":"Yes,I have a medical history of a mental health disorder",
+            "value": "yes,I have a medical history of a mental health disorder"
+          },
+
+          {
+            "text": "Yes,I have other medical history that is not specified here",
+            "value": "yes,I have other medical history that is not specified here"
+          },
+          {
+            "text": "No",
+            "value": "I do not have any medical history that can affect my pregnancy, to the best of my knowledge"
+          }
+        ]
+
+      }
+    },
+          {
+          "stepIdentifier": {
+            "id": "12"
+          },
+          "type": "completion",
+          "text": "Thanks for taking the survey, we will match you with care!",
+          "title": "Done!",
+          "buttonText": "Submit survey"
+          }
+        ]
+      }

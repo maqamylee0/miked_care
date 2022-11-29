@@ -5,59 +5,807 @@
     {
       "type": "conditional",
       "triggerStepIdentifier": {
+        "id": "2"
+      },
+      "values": {
+        "Yes": "4",
+        "No": "3"
+      }
+    },
+    {
+      "type": "conditional",
+      "triggerStepIdentifier": {
         "id": "3"
       },
       "values": {
-        "Yes": "2",
-        "No": "10"
+        "1":"17",
+        "2": "30",
+        "3":"43"
       }
     },
     {
       "type": "direct",
       "triggerStepIdentifier": {
-        "id": "1"
+        "id": "16"
       },
       "destinationStepIdentifier": {
-        "id": "3"
+        "id": "53"
       }
     },
     {
       "type": "direct",
       "triggerStepIdentifier": {
-        "id": "2"
+        "id": "42"
       },
       "destinationStepIdentifier": {
-        "id": "10"
+        "id": "53"
+      }
+    },
+    {
+      "type": "direct",
+      "triggerStepIdentifier": {
+        "id": "29"
+      },
+      "destinationStepIdentifier": {
+        "id": "53"
       }
     }
   ],
   "steps": [
-
-
     {
       "stepIdentifier": {
         "id": "1"
       },
+      "type": "intro",
+      "title": "Welcome to the\nMikedcares app Survey",
+      "text": "Get ready for a bunch of super random questions!",
+      "buttonText": "Let's go!"
+    },
+    {
+      "stepIdentifier": {
+        "id": "2"
+      },
       "type": "question",
-      "title": "Maternal and health questionaire(Postpartum)",
-      "text": "How old are you?(pls select the most appropriate age bracket for you)",
+      "title": "Are you a therapist?",
+      "answerFormat": {
+      "type": "bool",
+      "positiveAnswer": "Yes",
+      "negativeAnswer": "No",
+      "result": "POSITIVE"
+    }
+    },
+    {
+      "stepIdentifier": {
+        "id": "3"
+      },
+      "type": "question",
+      "title": "Find your perfect Therapist",
+      "text": "What type of therapy session would you like to have",
       "answerFormat": {
         "type": "single",
         "textChoices": [{
-          "text": "8-14",
-          "value": "8-14"
+          "text": "Postpartum therapy",
+          "value": "1"
         },
           {
-            "text": "15-20",
-            "value": "15-20"
+            "text": "Pregnancy Support Therapy",
+            "value": "2"
           },
           {
-            "text": "21-30",
-            "value": "21-30"
+            "text": "Preconception Therapy",
+            "value": "3"
+          }
+
+        ]
+
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "4"
+      },
+      "type": "intro",
+      "title": "Welcome to the\nMikedcares app\nprofessional’s Survey",
+      "text": "Get ready for a bunch of super random questions!",
+      "buttonText": "Let's go!"
+    },
+    {
+      "stepIdentifier": {
+        "id": "5"
+      },
+      "type": "question",
+      "title": "How old are you?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 20,
+        "hint": "Please enter your age"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "6"
+      },
+      "type": "question",
+      "title": "Designated Position?",
+      "text": "Do you provide perinatal mental health care services?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "7"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "How Many years of experience in providing care do you have?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 5,
+        "hint": "Please enter your years of experience"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "8"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Do you have an up-to-date license of practice ?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "9"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Do you understand the importance of confidentiality when providing care?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "10"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Are you willing to be extra patient with your clients and execute the appropriate ethics of practice to the best of your capabilities?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "11"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Have you ever had a legal issue in relation to your practice?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "12"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Have you recently reviewed your mental health as a mental health care provider?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "13"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Will you be willing to provide your certifications for vetting?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "14"
+      },
+      "type": "question",
+      "title": "Kindly upload all relevant documents & certifications with verifiable links for vetting?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "hint": "Kindly upload the certifications & licenses to one-drive and share the link with us here"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "15"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "You understand that we are a social enterprise and you are willing to reduce your fees to accommodate clients?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id":"16"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Do you have access to good internet?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "17"
+      },
+      "type": "intro",
+      "title": "Welcome to the\nMikedcares app\nPostpartum Therapy  Survey",
+      "text": "Get ready for a bunch of super random questions!",
+      "buttonText": "Let's go!"
+    },
+    {
+      "stepIdentifier": {
+        "id": "18"
+      },
+      "type": "question",
+      "title": "How old are you?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 20,
+        "hint": "Please enter your age"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "19"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "Have you been able to laugh and see the funny side of things?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "20"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "Have you been able to look forward with excitement to things?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "21"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "I have blamed myself unnecessarily, especially when things go wrong?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "22"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "I have been anxious & worried for no good reason?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "23"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "Things have been getting on top of me?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "24"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "Have you been so unhappy that you have difficulty sleeping?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "25"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "Have you been so unhappy that you have been crying?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "26"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "The thoughts of harming myself & my baby has occurred to me?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "27"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "I am worried about the safety of my baby?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "28"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "I have felt sad & miserable?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "29"
+      },
+      "type": "question",
+      "title": "Postpartum?",
+      "text": "I attend antenatal clinic religiously?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "30"
+      },
+      "type": "intro",
+      "title": "Welcome to the\nMikedcares app\nPregancy Therapy Survey",
+      "text": "Get ready for a bunch of super random questions!",
+      "buttonText": "Let's go!"
+    },
+    {
+      "stepIdentifier": {
+        "id": "31"
+      },
+      "type": "question",
+      "title": "How old are you?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 20,
+        "hint": "Please enter your age"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "32"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "Have you been able to laugh and see the funny side of things?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "33"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnacy?",
+      "text":"Have you been able to look forward with excitement to things?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "34"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I have blamed myself unnecessarily, especially when things go wrong?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "35"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I have been anxious & worried for no good reason?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "36"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "Things have been getting on top of me?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "37"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "Have you been so unhappy that you have difficulty sleeping?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "38"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnaancy?",
+      "text": "Have you been so unhappy that you have been crying?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "39"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "The thoughts of harming myself & my baby has occurred to me?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "40"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I am worried about the safety of my baby?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "41"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I have felt sad & miserable?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "42"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I attend antenatal clinic religiously?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "43"
+      },
+      "type": "intro",
+      "title": "Welcome to the\nMikedcares app\nPreconception Therapy Survey",
+      "text": "Get ready for a bunch of super random questions!",
+      "buttonText": "Let's go!"
+    },
+    {
+      "stepIdentifier": {
+        "id": "44"
+      },
+      "type": "question",
+      "title": "How old are you?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 20,
+        "hint": "Please enter your age"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "45"
+      },
+      "type": "question",
+      "title": "Preconception?",
+      "text": "Have you heard of preconception care?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "46"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Do you think you are ready to conceive?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "47"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Do you have fears about being a good mother or experiencing a healthy pregnancy?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "48"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Have you felt scared for no good reason in the last 2 weeks?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "49"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Do you think you will get support from your spouse & family during pregnancy?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "50"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "Have you been so unhappy that find yourself crying?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "51"
+      },
+      "type": "question",
+      "title": "conception?",
+      "text": "I understand that every pregnancy is unique and may result in different outcomes?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "52"
+      },
+      "type": "question",
+      "title": "PreConception",
+      "text": "Do you have an Medical History that can pose as risk to your Pregnancy?",
+
+
+      "answerFormat": {
+        "type": "multiple",
+        "textChoices": [{
+          "text": "Yes,I have a medical history of hypertension",
+          "value": "yes,I have a medical history of hypertension"
+        },
+          {
+            "text": "Yes,Have a medical History of Diabetes",
+            "value": "yes,Have a medical History of Diabetes"
           },
           {
-            "text": "31-59",
-            "value": "31-59"
+            "text":"Yes,I have a medical history of a mental health disorder",
+            "value": "yes,I have a medical history of a mental health disorder"
+          },
+
+          {
+            "text": "Yes,I have other medical history that is not specified here",
+            "value": "yes,I have other medical history that is not specified here"
+          },
+          {
+            "text": "No",
+            "value": "I do not have any medical history that can affect my pregnancy, to the best of my knowledge"
           }
         ]
 
@@ -65,7 +813,7 @@
     },
     {
       "stepIdentifier": {
-        "id": "10"
+        "id": "53"
       },
       "type": "completion",
       "text": "Thanks for taking the survey, we will contact you soon!",

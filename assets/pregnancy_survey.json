@@ -1,0 +1,229 @@
+{
+  "id": "123",
+  "type": "navigable",
+  "rules": [
+    {
+      "type": "conditional",
+      "triggerStepIdentifier": {
+        "id": "2"
+      },
+      "values": {
+        "Yes": "2",
+        "No": "10"
+      }
+    },
+    {
+      "type": "direct",
+      "triggerStepIdentifier": {
+        "id": "1"
+      },
+      "destinationStepIdentifier": {
+        "id": "3"
+      }
+    },
+    {
+      "type": "direct",
+      "triggerStepIdentifier": {
+        "id": "2"
+      },
+      "destinationStepIdentifier": {
+        "id": "10"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "stepIdentifier": {
+        "id": "1"
+      },
+      "type": "intro",
+      "title": "Welcome to the\nMikedcares app\npostpartum Survey",
+      "text": "Get ready for a bunch of super random questions!",
+      "buttonText": "Let's go!"
+    },
+    {
+      "stepIdentifier": {
+        "id": "2"
+      },
+      "type": "question",
+      "title": "How old are you?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 20,
+        "hint": "Please enter your age"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "3"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "Have you been able to laugh and see the funny side of things?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "4"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnacy?",
+      "text":"Have you been able to look forward with excitement to things?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "5"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I have blamed myself unnecessarily, especially when things go wrong?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "6"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I have been anxious & worried for no good reason?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "7"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "Things have been getting on top of me?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "8"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "Have you been so unhappy that you have difficulty sleeping?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "9"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnaancy?",
+      "text": "Have you been so unhappy that you have been crying?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "10"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "The thoughts of harming myself & my baby has occurred to me?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "11"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I am worried about the safety of my baby?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "12"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I have felt sad & miserable?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "13"
+      },
+      "type": "question",
+      "title": "Postpartum Pregnancy?",
+      "text": "I attend antenatal clinic religiously?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+    "stepIdentifier": {
+      "id": "14"
+    },
+    "type": "completion",
+    "text": "Thanks for taking the survey, we will match you with care!",
+    "title": "Done!",
+    "buttonText": "Submit survey"
+    }
+  ]
+}

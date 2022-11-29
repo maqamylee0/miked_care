@@ -1,0 +1,202 @@
+{
+  "id": "123",
+  "type": "navigable",
+  "rules": [
+
+
+  ],
+  "steps": [
+    {
+      "stepIdentifier": {
+        "id": "1"
+      },
+      "type": "intro",
+      "title": "Welcome to the\nMikedcares app\nprofessional’s Survey",
+      "text": "Get ready for a bunch of super random questions!",
+      "buttonText": "Let's go!"
+    },
+    {
+      "stepIdentifier": {
+        "id": "2"
+      },
+      "type": "question",
+      "title": "How old are you?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 20,
+        "hint": "Please enter your age"
+      }
+    },
+    {
+      "stepIdentifier": {
+        "id": "3"
+      },
+      "type": "question",
+      "title": "Designated Position?",
+      "text": "Do you provide perinatal mental health care services?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "4"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "How Many years of experience in providing care do you have?",
+      "answerFormat": {
+        "type": "integer",
+        "defaultValue": 5,
+        "hint": "Please enter your years of experience"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "5"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Do you have an up-to-date license of practice ?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "6"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Do you understand the importance of confidentiality when providing care?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "7"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Are you willing to be extra patient with your clients and execute the appropriate ethics of practice to the best of your capabilities?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "8"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Have you ever had a legal issue in relation to your practice?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "9"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Have you recently reviewed your mental health as a mental health care provider?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "10"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Will you be willing to provide your certifications for vetting?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "11"
+      },
+      "type": "question",
+      "title": "Kindly upload all relevant documents & certifications with verifiable links for vetting?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "hint": "Kindly upload the certifications & licenses to one-drive and share the link with us here"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id": "12"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "You understand that we are a social enterprise and you are willing to reduce your fees to accommodate clients?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+
+    {
+      "stepIdentifier": {
+        "id":"13"
+      },
+      "type": "question",
+      "title": "Professionals?",
+      "text": "Do you have access to good internet?",
+      "answerFormat": {
+        "type": "bool",
+        "positiveAnswer": "Yes",
+        "negativeAnswer": "No",
+        "result": "POSITIVE"
+      }
+    },
+    {
+    "stepIdentifier": {
+      "id": "14"
+    },
+    "type": "completion",
+    "text": "Thanks for taking the survey, we will match you with client!",
+    "title": "Done!",
+    "buttonText": "Submit survey"
+    }
+  ]
+}

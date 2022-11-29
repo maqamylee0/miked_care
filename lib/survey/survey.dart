@@ -279,7 +279,7 @@ class _SurveyState extends State<Survey> {
     var taskMap;
 
     await rootBundle.loadString('assets/survey.json').then((value) => taskMap = json.decode(value));
-    // print('hiiiiiiiiiiiiiiiiii $taskMap');
+    print('hiiiiiiiiiiiiiiiiii $taskMap');
     return Task.fromJson(taskMap);
   }
 }
