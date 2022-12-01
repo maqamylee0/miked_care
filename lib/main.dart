@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:miked_care/login.dart';
-import 'package:miked_care/new_password_set.dart';
-import 'package:miked_care/reset_password.dart';
-import 'package:miked_care/signup.dart';
+import 'package:miked_care/dashboard/views/login.dart';
+import 'package:miked_care/dashboard/views/new_password_set.dart';
+import 'package:miked_care/dashboard/views/reset_password.dart';
+import 'package:miked_care/dashboard/views/signup.dart';
 import 'package:miked_care/slider/welcome_screen.dart';
 import 'package:miked_care/slider/welcome_slider.dart';
-import 'package:miked_care/success_verify.dart';
-import 'package:miked_care/verify_code.dart';
+import 'package:miked_care/dashboard/views/success_verify.dart';
+import 'package:miked_care/dashboard/views/verify_code.dart';
 
 void main() {
   runApp(const MyApp());

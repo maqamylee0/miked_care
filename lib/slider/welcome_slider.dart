@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
-import '../login.dart';
+import '../dashboard/views/login.dart';
 import '/slider/welcome_screen.dart';
 import '/slider/data.dart' as data;
 

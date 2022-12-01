@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:miked_care/success_verify.dart';
+import 'package:miked_care/dashboard/views/success_verify.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyOne extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:miked_care/login.dart';
-import 'package:miked_care/verify_code.dart';
+import 'package:miked_care/dashboard/views/login.dart';
+import 'package:miked_care/dashboard/views/verify_code.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);

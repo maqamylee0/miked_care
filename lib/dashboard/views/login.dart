@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:miked_care/forgotpassword.dart';
-import 'package:miked_care/signup.dart';
+import 'package:miked_care/dashboard/views/forgotpassword.dart';
+import 'package:miked_care/dashboard/views/signup.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

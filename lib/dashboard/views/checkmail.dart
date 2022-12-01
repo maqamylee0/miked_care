@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:miked_care/new_password_set.dart';
-import 'package:miked_care/reset_password.dart';
+import 'package:miked_care/dashboard/views/new_password_set.dart';
+import 'package:miked_care/dashboard/views/reset_password.dart';
 
 class CheckEmail extends StatefulWidget {
   const CheckEmail({Key? key}) : super(key: key);
