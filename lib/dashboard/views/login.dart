@@ -1,8 +1,13 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:miked_care/dashboard/views/forgotpassword.dart';
 import 'package:miked_care/dashboard/views/signup.dart';
+import 'package:miked_care/survey/survey.dart';
+
+import '../auth/auth.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -15,7 +20,9 @@ class _LoginState extends State<Login> {
   var _passwordVisible;
   TextEditingController _userPasswordController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-
+  Auth auth = Auth();
+  final formKey = GlobalKey<FormState>();
+  bool showSpinner = false;
 
   @override
   void initState() {
@@ -28,8 +35,8 @@ class _LoginState extends State<Login> {
       body: Container(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
-
-
+          child:Form(
+            key: formKey,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -44,6 +51,9 @@ class _LoginState extends State<Login> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   controller: _emailController,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (email)=>
+                  email != null && EmailValidator.validate(email) ?  null:"Enter valid Email",
                   decoration: InputDecoration(
                     labelText: 'Email Address',
                     hintText: 'johndoe@gmail.com',
@@ -59,7 +69,11 @@ class _LoginState extends State<Login> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   controller: _userPasswordController,
-                  obscureText: !_passwordVisible,//This will obscure text dynamically
+                  obscureText: !_passwordVisible,//
+                  // This will obscure text dynamically
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (password)=>
+                  password != null && password.length > 6  ?  null:"Enter a minimum of 6 characters",
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Enter your password',
@@ -96,18 +110,18 @@ class _LoginState extends State<Login> {
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size.fromHeight(55), // fromHeight use double.infinity as width and 40 is the height
                     ),
-                    onPressed: () {onPressed();},
+                    onPressed: () {onPressed(_emailController.text,_userPasswordController.text);},
                     child: const Text('Login',style: TextStyle(color: Colors.white),)
                 ) ,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Don't have an Account?"),
-                    TextButton(onPressed: onPressed, child: Text("Sign Up"))
+                    TextButton(onPressed: onPressed3, child: Text("Sign Up"))
                   ],
                 )
               ]
-          ),
+          ),)
 
         )
 
@@ -116,11 +130,17 @@ class _LoginState extends State<Login> {
     }
 
 
-  void onPressed() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const SignUp())
-    );
+  void onPressed(email,password) {
+    final isValid = formKey.currentState!.validate();
+    if(isValid){
+
+      auth.signIn(context, email, password);
+
+    }else{
+
+      return;
+    }
+   
   }
   void onPressed2() {
     Navigator.push(
@@ -128,6 +148,11 @@ class _LoginState extends State<Login> {
         MaterialPageRoute(builder: (context) => const ForgotPassword())
     );
   }
-
+  void onPressed3() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SignUp())
+    );
+  }
 }
 

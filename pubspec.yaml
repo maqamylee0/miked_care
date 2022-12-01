@@ -44,6 +44,11 @@ dependencies:
   intro_slider: ^4.2.0
   flutter_native_splash: ^2.2.15
   survey_kit: ^0.1.1
+  cloud_firestore: ^4.1.0
+  firebase_auth: ^4.1.5
+  fluttertoast: ^8.1.1
+  firebase_core: ^2.3.0
+  email_validator: ^2.1.17
 
 
 dev_dependencies:
