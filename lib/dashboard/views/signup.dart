@@ -202,7 +202,7 @@ class _SignUpState extends State<SignUp> {
   void onPressed2() {
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const VerifyOne())
+        MaterialPageRoute(builder: (context) => const Login())
     );
   }
   void onPressed() {
