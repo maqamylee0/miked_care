@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:miked_care/survey/service/service.dart';
 import 'package:survey_kit/survey_kit.dart';
 
 class Survey extends StatefulWidget {
@@ -12,6 +13,7 @@ class Survey extends StatefulWidget {
 }
 
 class _SurveyState extends State<Survey> {
+  SendSurvey sendSurvey = SendSurvey();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,8 +29,11 @@ class _SurveyState extends State<Survey> {
               final task = snapshot.data!;
               return SurveyKit(
                 onResult: (SurveyResult result) {
-                  print(result.finishReason);
-                  Navigator.pushNamed(context, '/');
+                   sendSurvey.sendSurvey(result);
+                  print(result);
+                  print('hiiiiiiiiiiiiiiiiii $result');
+
+                  // Navigator.pushNamed(context, '/');
                 },
                 task: task,
                 showProgress: true,
@@ -279,7 +284,7 @@ class _SurveyState extends State<Survey> {
     var taskMap;
 
     await rootBundle.loadString('assets/survey.json').then((value) => taskMap = json.decode(value));
-    print('hiiiiiiiiiiiiiiiiii $taskMap');
+    // print('hiiiiiiiiiiiiiiiiii $taskMap');
     return Task.fromJson(taskMap);
   }
 }

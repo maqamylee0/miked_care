@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:miked_care/dashboard/views/login.dart';
 import 'package:miked_care/dashboard/views/new_password_set.dart';
 import 'package:miked_care/dashboard/views/reset_password.dart';
@@ -14,6 +16,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 void  main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
   );

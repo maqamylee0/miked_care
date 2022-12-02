@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/dashboard/views/new_password_set.dart';
 import 'package:miked_care/dashboard/views/reset_password.dart';
+import 'package:open_mail_app/open_mail_app.dart';
+
+import '../auth/auth.dart';
 
 class CheckEmail extends StatefulWidget {
   const CheckEmail({Key? key}) : super(key: key);
@@ -39,7 +43,7 @@ class _CheckEmailState extends State<CheckEmail> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("We sent a password link to \n"
-                              "      johndoe@gmail.com", style: TextStyle(fontSize: 12.5)),
+                              "      ${FirebaseAuth.instance.currentUser?.email}", style: TextStyle(fontSize: 12.5)),
 
                         ],
 
@@ -59,7 +63,7 @@ class _CheckEmailState extends State<CheckEmail> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Didn't receive mail?"),
-                        TextButton(onPressed: onPressed, child: Text("Click to Resend"))
+                        TextButton(onPressed: (){onPressed2(context);}, child: Text("Click to Resend"))
                       ],
                     )
                   ]
@@ -70,11 +74,16 @@ class _CheckEmailState extends State<CheckEmail> {
         )
     );
   }
-
+  void onPressed2(context) {
+    Auth auth = Auth();
+    String? email = FirebaseAuth.instance.currentUser?.email;
+    auth.passwordReset(email, context);
+  }
   void onPressed() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ResetPass())
-    );
+       checkmail();
+  }
+
+  void checkmail()async {
+     await OpenMailApp.openMailApp();
   }
 }

@@ -7,20 +7,26 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
 import 'package:miked_care/dashboard/views/login.dart';
 import 'package:miked_care/dashboard/views/verify_code.dart';
 
 import '../../main.dart';
 import '../../survey/survey.dart';
 import '../models/user.dart';
+import '../views/checkmail.dart';
 
 class Auth{
   String? errorMessage;
+  late final Box box1;
 
   final _auth = FirebaseAuth.instance;
 
   Future signUp(String email, String password,userModel,context) async {
     // if (_formKey.currentState!.validate()) {
+      // final directory = await getApplicationDocumentsDirectory();
+    box1 = await Hive.openBox('personaldata');
+
     try {
       showDialog(context: context,barrierDismissible: false,
           builder: (context) => const Center(child: CircularProgressIndicator()));
@@ -76,7 +82,7 @@ class Auth{
 
         );
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    // box1.put('userid', user!.uid);
+    box1.put('userid', user!.uid);
 
     await firebaseFirestore
         .collection("users")
@@ -111,22 +117,24 @@ class Auth{
     // navigatorKey.currentState!.popUntil((route)=>route.isFirst);
   }
 
-  // Future sendVerificationCode(context, email_receiver) async {
-  //   var rng = new Random();
-  //   var codeValue = rng.nextInt(9000) + 1000;
-  //   final Email email = Email(
-  //     body: 'Your verification code is $codeValue',
-  //     subject: 'Verification Code',
-  //     recipients: [email_receiver],
-  //     // attachmentPaths: ['/path/to/attachment.zip'],
-  //     isHTML: false,
-  //   );
-  //
-  //   await FlutterEmailSender.send(email);
-  //   Navigator.push(
-  //       context,
-  //       MaterialPageRoute(builder: (context) =>  VerifyOne(code:codeValue))
-  //
-  //   );
-  // }
+  Future<void> passwordReset(String? email,context) async {
+    showDialog(context: context,barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()));
+    final _auth = FirebaseAuth.instance;
+    try {
+      // _formKey.currentState?.save();
+
+      await _auth.sendPasswordResetEmail(email: email!);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return CheckEmail();
+        }),
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
 }
