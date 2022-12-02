@@ -49,6 +49,7 @@ dependencies:
   fluttertoast: ^8.1.1
   firebase_core: ^2.3.0
   email_validator: ^2.1.17
+  flutter_email_sender: ^5.2.0
 
 
 dev_dependencies:

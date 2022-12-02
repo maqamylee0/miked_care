@@ -1,12 +1,18 @@
 import 'dart:async';
+// import 'dart:ffi';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:miked_care/dashboard/views/success_verify.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../auth/auth.dart';
+
 class VerifyOne extends StatefulWidget {
-  const VerifyOne({Key? key}) : super(key: key);
+  final int code;
+  const VerifyOne({Key? key ,  required this.code}) : super(key: key);
 
   @override
   State<VerifyOne> createState() => _VerifyOneState();
@@ -148,7 +154,7 @@ class _VerifyOneState extends State<VerifyOne> {
                               55), // fromHeight use double.infinity as width and 40 is the height
                         ),
                         onPressed: () {
-                          onPressed();
+                          onPressed2();
                         },
                         child: const Text(
                           'Verify',
@@ -171,7 +177,18 @@ class _VerifyOneState extends State<VerifyOne> {
   }
 
   void onPressed() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const VerifySuccess()));
+    User? user=FirebaseAuth.instance.currentUser;
+    Auth auth = Auth();
+    auth.sendVerificationCode(context, user?.email);
+  }
+  void onPressed2() {
+    if(currentText.toString() == widget.code.toString()){
+
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const VerifySuccess()));
+    }else{
+
+      Fluttertoast.showToast(msg: "Wrong Code");
+    }
   }
 }
