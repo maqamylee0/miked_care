@@ -69,8 +69,12 @@ class Auth{
     User? user=_auth.currentUser;
     userModel.email = user!.email;
     userModel.uid = user!.uid;
-    sendVerificationCode(context, userModel.email );
+    // sendVerificationCode(context, userModel.email );
+    Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>  VerifyOne())
 
+        );
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     // box1.put('userid', user!.uid);
 
@@ -89,8 +93,11 @@ class Auth{
     try{
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: email.trim(), password:password.trim());
 
-      Navigator.pop(context);
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  Survey())
 
+      );
     } on FirebaseException catch(e){
       // navigatorKey.currentState!.popUntil((route)=>route.isFirst);
       Navigator.pop(context);
@@ -103,22 +110,23 @@ class Auth{
 
     // navigatorKey.currentState!.popUntil((route)=>route.isFirst);
   }
-  Future sendVerificationCode(context, email_receiver) async {
-    var rng = new Random();
-    var codeValue = rng.nextInt(9000) + 1000;
-    final Email email = Email(
-      body: 'Your verification code is $codeValue',
-      subject: 'Verification Code',
-      recipients: [email_receiver],
-      // attachmentPaths: ['/path/to/attachment.zip'],
-      isHTML: false,
-    );
 
-    await FlutterEmailSender.send(email);
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) =>  VerifyOne(code:codeValue))
-
-    );
-  }
+  // Future sendVerificationCode(context, email_receiver) async {
+  //   var rng = new Random();
+  //   var codeValue = rng.nextInt(9000) + 1000;
+  //   final Email email = Email(
+  //     body: 'Your verification code is $codeValue',
+  //     subject: 'Verification Code',
+  //     recipients: [email_receiver],
+  //     // attachmentPaths: ['/path/to/attachment.zip'],
+  //     isHTML: false,
+  //   );
+  //
+  //   await FlutterEmailSender.send(email);
+  //   Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (context) =>  VerifyOne(code:codeValue))
+  //
+  //   );
+  // }
 }

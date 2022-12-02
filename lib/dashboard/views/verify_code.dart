@@ -9,10 +9,11 @@ import 'package:miked_care/dashboard/views/success_verify.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../auth/auth.dart';
+import 'login.dart';
 
 class VerifyOne extends StatefulWidget {
-  final int code;
-  const VerifyOne({Key? key ,  required this.code}) : super(key: key);
+  // final int code;
+  const VerifyOne({Key? key }) : super(key: key);
 
   @override
   State<VerifyOne> createState() => _VerifyOneState();
@@ -20,6 +21,31 @@ class VerifyOne extends StatefulWidget {
 
 class _VerifyOneState extends State<VerifyOne> {
   TextEditingController textEditingController = TextEditingController();
+  bool isVerified = false;
+  bool canResend = false;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    isVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+
+    if(!isVerified){
+      sendVerifyEmail();
+
+      timer = Timer.periodic(
+          Duration(seconds: 3),(_)=>{
+        checkEmailVerified(),
+      }
+      );
+    }
+  }
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+
+  }
   // ..text = "123456";
 
   // ignore: close_sinks
@@ -32,8 +58,9 @@ class _VerifyOneState extends State<VerifyOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
+        body: isVerified ? const Login() :SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
           height: 100,
@@ -44,13 +71,13 @@ class _VerifyOneState extends State<VerifyOne> {
                 fontSize: 27,
                 fontWeight: FontWeight.bold)),
         SizedBox(height: 20),
-        Text("A verification code was sent to your email",
+        Text("A verification link was sent to your email",
             style: TextStyle(
               color: Colors.black,
               fontSize: 14,
             )),
 
-        Text("johndoe@gmail.com",
+        Text("${ FirebaseAuth.instance.currentUser?.email}",
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -177,18 +204,43 @@ class _VerifyOneState extends State<VerifyOne> {
   }
 
   void onPressed() {
-    User? user=FirebaseAuth.instance.currentUser;
-    Auth auth = Auth();
-    auth.sendVerificationCode(context, user?.email);
+     sendVerifyEmail();
+    // User? user=FirebaseAuth.instance.currentUser;
+    // Auth auth = Auth();
+    // auth.sendVerificationCode(context, user?.email);
   }
   void onPressed2() {
-    if(currentText.toString() == widget.code.toString()){
+    // if(currentText.toString() == widget.code.toString()){
+    sendVerifyEmail();
 
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const VerifySuccess()));
-    }else{
 
-      Fluttertoast.showToast(msg: "Wrong Code");
+  }
+  Future sendVerifyEmail() async {
+    try{
+      final user = FirebaseAuth.instance.currentUser!;
+      await user.sendEmailVerification();
+      setState(() {
+        canResend= false;
+      });
+      await Future.delayed(Duration(seconds: 5));
+      setState(() {
+        canResend= true;
+      });
+    } on FirebaseAuthException catch (e){
+      print(e);
+      Fluttertoast.showToast(msg: '${e.message}');
+      // Utils.showSnackBar(e.message);
     }
+
+  }
+
+  Future checkEmailVerified() async {
+    await FirebaseAuth.instance.currentUser!.reload();
+    setState(() {
+      isVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+    });
+    if(isVerified) timer?.cancel();
   }
 }
