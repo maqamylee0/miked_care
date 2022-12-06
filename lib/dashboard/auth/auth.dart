@@ -7,9 +7,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hive/hive.dart';
 import 'package:miked_care/dashboard/views/login.dart';
 import 'package:miked_care/dashboard/views/verify_code.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
 import '../../survey/survey.dart';
@@ -18,14 +18,13 @@ import '../views/checkmail.dart';
 
 class Auth{
   String? errorMessage;
-  late final Box box1;
-
   final _auth = FirebaseAuth.instance;
 
   Future signUp(String email, String password,userModel,context) async {
     // if (_formKey.currentState!.validate()) {
       // final directory = await getApplicationDocumentsDirectory();
-    box1 = await Hive.openBox('personaldata');
+    // box1 = await Hive.openBox('personaldata');
+
 
     try {
       showDialog(context: context,barrierDismissible: false,
@@ -76,13 +75,18 @@ class Auth{
     userModel.email = user!.email;
     userModel.uid = user!.uid;
     // sendVerificationCode(context, userModel.email );
+
+    //save uid of user in local storage
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userid', '${user!.uid}');
+
     Navigator.push(
             context,
             MaterialPageRoute(builder: (context) =>  VerifyOne())
 
         );
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    box1.put('userid', user!.uid);
+    // box1.put('userid', user!.uid);
 
     await firebaseFirestore
         .collection("users")

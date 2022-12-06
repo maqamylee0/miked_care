@@ -50,10 +50,8 @@ dependencies:
   firebase_core: ^2.3.0
   email_validator: ^2.1.17
   flutter_email_sender: ^5.2.0
-  hive: ^1.4.1+1
-  hive_flutter: ^0.3.0+2
-#  path_provider: ^1.6.27
   open_mail_app: ^0.4.5
+  shared_preferences: ^2.0.15
 
 
 dev_dependencies:
