@@ -247,10 +247,10 @@
       "type": "question",
       "title": "Kindly upload all relevant documents & certifications with verifiable links for vetting?",
       "answerFormat": {
-        "type": "bool",
-        "positiveAnswer": "Yes",
-        "negativeAnswer": "No",
-        "hint": "Kindly upload the certifications & licenses to one-drive and share the link with us here"
+        "type": "text",
+        "maxLines": 5,
+        "validationRegEx": "^(?!\\s*\\$).+",
+        "hint": "share the link with us here"
       }
     },
 
@@ -787,25 +787,25 @@
       "answerFormat": {
         "type": "multiple",
         "textChoices": [{
-          "text": "Yes,I have a medical history of hypertension",
-          "value": "yes,I have a medical history of hypertension"
+          "text": "Hypertension",
+          "value": "Hypertension"
         },
           {
-            "text": "Yes,Have a medical History of Diabetes",
-            "value": "yes,Have a medical History of Diabetes"
+            "text": "Diabetes",
+            "value": "Diabetes"
           },
           {
-            "text":"Yes,I have a medical history of a mental health disorder",
-            "value": "yes,I have a medical history of a mental health disorder"
+            "text":"MentalHealth",
+            "value": "MentalHealth"
           },
 
           {
-            "text": "Yes,I have other medical history that is not specified here",
-            "value": "yes,I have other medical history that is not specified here"
+            "text": "Other",
+            "value": "Other"
           },
           {
-            "text": "No",
-            "value": "I do not have any medical history that can affect my pregnancy, to the best of my knowledge"
+            "text": "None",
+            "value": "None"
           }
         ]
 
