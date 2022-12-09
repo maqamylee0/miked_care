@@ -8,11 +8,16 @@ import 'package:miked_care/slider/welcome_screen.dart';
 import 'package:miked_care/slider/welcome_slider.dart';
 import 'package:miked_care/dashboard/views/success_verify.dart';
 import 'package:miked_care/dashboard/views/verify_code.dart';
+
+import 'firebase_options.dart';
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void  main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Hive.initFlutter();
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

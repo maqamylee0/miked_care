@@ -1,25 +1,31 @@
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:miked_care/dashboard/views/login.dart';
+import 'package:miked_care/dashboard/views/verify_code.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
 import '../../survey/survey.dart';
 import '../models/user.dart';
+import '../views/checkmail.dart';
 
 class Auth{
   String? errorMessage;
-
   final _auth = FirebaseAuth.instance;
 
   Future signUp(String email, String password,userModel,context) async {
-    print("hyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-
-
     // if (_formKey.currentState!.validate()) {
+      // final directory = await getApplicationDocumentsDirectory();
+    // box1 = await Hive.openBox('personaldata');
+
+
     try {
       showDialog(context: context,barrierDismissible: false,
           builder: (context) => const Center(child: CircularProgressIndicator()));
@@ -68,12 +74,17 @@ class Auth{
     User? user=_auth.currentUser;
     userModel.email = user!.email;
     userModel.uid = user!.uid;
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Login())
-    );
-    print("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+    // sendVerificationCode(context, userModel.email );
 
+    //save uid of user in local storage
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userid', '${user!.uid}');
+
+    Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>  VerifyOne())
+
+        );
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     // box1.put('userid', user!.uid);
 
@@ -91,13 +102,12 @@ class Auth{
         builder: (context) => const Center(child: CircularProgressIndicator()));
     try{
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: email.trim(), password:password.trim());
+
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Survey())
+          MaterialPageRoute(builder: (context) =>  Survey())
 
-    );
-      Navigator.pop(context);
-
+      );
     } on FirebaseException catch(e){
       // navigatorKey.currentState!.popUntil((route)=>route.isFirst);
       Navigator.pop(context);
@@ -110,4 +120,25 @@ class Auth{
 
     // navigatorKey.currentState!.popUntil((route)=>route.isFirst);
   }
+
+  Future<void> passwordReset(String? email,context) async {
+    showDialog(context: context,barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()));
+    final _auth = FirebaseAuth.instance;
+    try {
+      // _formKey.currentState?.save();
+
+      await _auth.sendPasswordResetEmail(email: email!);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return CheckEmail();
+        }),
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
 }

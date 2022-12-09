@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:miked_care/dashboard/views/checkmail.dart';
 
+import '../auth/auth.dart';
+
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
 
@@ -77,7 +79,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size.fromHeight(55), // fromHeight use double.infinity as width and 40 is the height
                         ),
-                        onPressed: () {onPressed();},
+                        onPressed: () {onPressed(_emailController.text,context);},
                         child: const Text('Reset your Password',style: TextStyle(color: Colors.white),)
                     ) ,
 
@@ -90,10 +92,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     );
   }
 
-  void onPressed() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const CheckEmail())
-    );
+  void onPressed(email, context) {
+   Auth auth = Auth();
+   auth.passwordReset(email, context);
   }
 }
