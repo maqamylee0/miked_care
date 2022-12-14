@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:miked_care/dashboard/views/checkmail.dart';
+import 'package:miked_care/features/views/checkmail.dart';
 
 import '../auth/auth.dart';
 
