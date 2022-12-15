@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../homepage/views/pages/homepage.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -14,6 +16,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      body: IndexedStack(
+        children: [
+          HomePage(),
+        ],
+        index: _currentIndex,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index){
@@ -21,24 +29,25 @@ class _HomeState extends State<Home> {
         },
         items: const [
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.house),
+              icon: FaIcon(FontAwesomeIcons.house,color: Colors.black,),
               label: "Home"
           ),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.heart),
+              icon: FaIcon(FontAwesomeIcons.rectangleList,color: Colors.black,),
               label: "Favorite"
           ),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.heart),
+              icon: FaIcon(FontAwesomeIcons.clock,color: Colors.black,),
               label: "Favorite"
           ),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.heart),
+              icon: FaIcon(FontAwesomeIcons.quoteRight,color: Colors.black,),
               label: "Favorite"
           ),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.heart),
+              icon: FaIcon(FontAwesomeIcons.user,color: Colors.black,),
               label: "Favorite"
+
           )
         ],
       ),

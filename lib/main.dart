@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/features/views/login.dart';
@@ -19,7 +20,11 @@ void  main() async {
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+         builder: (BuildContext context)=>  MyApp()
+
+      ));
 }
 
 class MyApp extends StatelessWidget {
