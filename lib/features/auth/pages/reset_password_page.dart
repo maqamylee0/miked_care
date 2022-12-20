@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:miked_care/features/views/new_password_set.dart';
+import 'package:miked_care/features/auth/widgets/new_password_set.dart';
 
-class ResetPass extends StatefulWidget {
-  const ResetPass({Key? key}) : super(key: key);
+class ResetPassPage extends StatefulWidget {
+  const ResetPassPage({Key? key}) : super(key: key);
 
   @override
-  State<ResetPass> createState() => _ResetPassState();
+  State<ResetPassPage> createState() => _ResetPassPageState();
 }
 
-class _ResetPassState extends State<ResetPass> {
+class _ResetPassPageState extends State<ResetPassPage> {
   var _passwordVisible;
   var _passwordVisible2;
 

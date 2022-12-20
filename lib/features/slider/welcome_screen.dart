@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miked_care/features/views/login.dart';
-import '/slider/data.dart' as data;
+import 'package:miked_care/features/auth/pages/login_page.dart';
+import 'data.dart' as data;
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -45,32 +45,31 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               Container(
                 width: 120,
-                child:ElevatedButton(
+                child: ElevatedButton(
                     style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            )
-                        )
-                    ),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ))),
                     onPressed: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Login())
-                      );
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
                     },
-                    child: Icon(Icons.arrow_forward,)
-                ) ,
+                    child: Icon(
+                      Icons.arrow_forward,
+                    )),
               ),
-
               Column(
                 children: [
                   InkWell(
                     onTap: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Login())
-                      );
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:miked_care/survey/service/service.dart';
 import 'package:survey_kit/survey_kit.dart';
+
+import 'service/service.dart';
 
 class Survey extends StatefulWidget {
   const Survey({Key? key}) : super(key: key);
@@ -29,9 +30,8 @@ class _SurveyState extends State<Survey> {
               final task = snapshot.data!;
               return SurveyKit(
                 onResult: (SurveyResult result) {
-                   sendSurvey.sendSurvey(result);
-                  print(result);
-                  print('hiiiiiiiiiiiiiiiiii $result');
+                  sendSurvey.sendSurvey(result);
+                  debugPrint('hiiiiiiiiiiiiiiiiii $result');
 
                   // Navigator.pushNamed(context, '/');
                 },

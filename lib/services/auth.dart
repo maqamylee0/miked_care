@@ -7,15 +7,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:miked_care/features/views/login.dart';
-import 'package:miked_care/features/views/verify_code.dart';
+import 'package:miked_care/features/auth/pages/login_page.dart';
+import 'package:miked_care/features/auth/widgets/verify_code.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../main.dart';
-import '../../survey/survey.dart';
-import '../models/user.dart';
-import '../views/checkmail.dart';
+import '../main.dart';
+import '../features/survey/survey.dart';
+import '../features/auth/models/user.dart';
+import '../features/auth/widgets/checkmail.dart';
 
+///
 class Auth{
   String? errorMessage;
   final _auth = FirebaseAuth.instance;
