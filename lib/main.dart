@@ -1,30 +1,25 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:miked_care/features/views/login.dart';
-import 'package:miked_care/features/views/new_password_set.dart';
-import 'package:miked_care/features/views/reset_password.dart';
-import 'package:miked_care/features/views/signup.dart';
-import 'package:miked_care/slider/welcome_screen.dart';
-import 'package:miked_care/slider/welcome_slider.dart';
-import 'package:miked_care/features/views/success_verify.dart';
-import 'package:miked_care/features/views/verify_code.dart';
+import 'package:miked_care/features/auth/pages/login_page.dart';
+import 'package:miked_care/features/auth/widgets/new_password_set.dart';
+import 'package:miked_care/features/auth/pages/reset_password_page.dart';
+import 'package:miked_care/features/auth/pages/sign_up_page.dart';
+import 'package:miked_care/features/auth/pages/verify_success_page.dart';
+import 'package:miked_care/features/auth/widgets/verify_code.dart';
 
-import 'features/dashboard/home/views/pages/home.dart';
+import 'features/dashboard/views/pages/dashboard_page.dart';
 import 'firebase_options.dart';
+
 final navigatorKey = GlobalKey<NavigatorState>();
 
-void  main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Hive.initFlutter();
   await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    DevicePreview(
-         builder: (BuildContext context)=>  MyApp()
-
-      ));
+  runApp(DevicePreview(builder: (BuildContext context) => MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -41,8 +36,7 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
       )),
-      home: Home(),
+      home: DashboardPage(),
     );
   }
 }
-

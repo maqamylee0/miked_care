@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:miked_care/features/views/new_password_set.dart';
-import 'package:miked_care/features/views/reset_password.dart';
+import 'package:miked_care/features/auth/widgets/new_password_set.dart';
+import 'package:miked_care/features/auth/pages/reset_password_page.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 
-import '../auth/auth.dart';
+import '../../../services/auth.dart';
 
 class CheckEmail extends StatefulWidget {
   const CheckEmail({Key? key}) : super(key: key);

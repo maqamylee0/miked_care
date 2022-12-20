@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
-import '../features/views/login.dart';
-import '/slider/welcome_screen.dart';
-import '/slider/data.dart' as data;
+import '../auth/pages/login_page.dart';
+import 'welcome_screen.dart';
+import 'data.dart' as data;
 
 class WelcomeSlider extends StatefulWidget {
   const WelcomeSlider({super.key});
