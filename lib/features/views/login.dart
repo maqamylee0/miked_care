@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:miked_care/dashboard/views/forgotpassword.dart';
-import 'package:miked_care/dashboard/views/signup.dart';
+import 'package:miked_care/features/views/forgotpassword.dart';
+import 'package:miked_care/features/views/signup.dart';
 import 'package:miked_care/survey/survey.dart';
 
 import '../auth/auth.dart';

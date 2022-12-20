@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:miked_care/dashboard/views/success_verify.dart';
+import 'package:miked_care/features/views/success_verify.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../auth/auth.dart';

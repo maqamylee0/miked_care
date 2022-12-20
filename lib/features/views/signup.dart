@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:miked_care/dashboard/views/login.dart';
-import 'package:miked_care/dashboard/views/verify_code.dart';
+import 'package:miked_care/features/views/login.dart';
+import 'package:miked_care/features/views/verify_code.dart';
 
 import '../auth/auth.dart';
 import '../models/user.dart';
