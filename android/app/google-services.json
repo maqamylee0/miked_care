@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "754497084151",
+    "project_id": "mikedcares-therapy-app",
+    "storage_bucket": "mikedcares-therapy-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754497084151:android:dc7ae91aafab1fa31291f2",
+        "android_client_info": {
+          "package_name": "com.example.miked_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754497084151-vf293poc2be2ri20gmg6fl63vgmr07qd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.miked_care",
+            "certificate_hash": "43734e2b4bc2b7b154261041b8ae8e31006384b8"
+          }
+        },
+        {
+          "client_id": "754497084151-hc23q74i3r78k227qnd1qacgv81injqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkFTLC7j1gvhOgYhu4aA8gX_0H95MLYQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754497084151-hc23q74i3r78k227qnd1qacgv81injqf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "754497084151-c0o79bhuea4m5psqpp31103ah1ie04g2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.miked.mikedcare"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
