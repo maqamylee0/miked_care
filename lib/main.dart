@@ -8,6 +8,7 @@ import 'package:miked_care/features/auth/pages/sign_up_page.dart';
 import 'package:miked_care/features/auth/pages/verify_success_page.dart';
 import 'package:miked_care/features/auth/widgets/verify_code.dart';
 
+import 'features/blogs/pages/blog_page.dart';
 import 'features/dashboard/views/pages/dashboard_page.dart';
 import 'features/slider/welcome_slider.dart';
 import 'firebase_options.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         // primaryColor: Colors.cyanAccent,
       )),
       home: WelcomeSlider(),
+
     );
   }
 }
