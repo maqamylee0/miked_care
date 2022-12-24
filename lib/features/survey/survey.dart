@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:miked_care/features/homepage/pages/homepage.dart';
 import 'package:survey_kit/survey_kit.dart';
 
 import 'service/service.dart';
@@ -32,7 +33,8 @@ class _SurveyState extends State<Survey> {
                 onResult: (SurveyResult result) {
                   sendSurvey.sendSurvey(result);
                   debugPrint('hiiiiiiiiiiiiiiiiii $result');
-
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const HomePage()));
                   // Navigator.pushNamed(context, '/');
                 },
                 task: task,
