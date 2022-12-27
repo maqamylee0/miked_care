@@ -56,7 +56,7 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
                     ),
               ),
                SizedBox(
-                 height: MediaQuery.of(context).size.height*0.7,
+                 height: MediaQuery.of(context).size.height*0.6,
                   // width: double.maxFinite,
                    child:TabBarView(
                   controller: tabController,

@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
       )),
-      home: HistoryPage(),
+      home: WelcomeSlider(),
 
     );
   }

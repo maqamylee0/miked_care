@@ -53,7 +53,7 @@ class _HistoryPageState extends State<HistoryPage>with TickerProviderStateMixin 
               ),
             ),
             SizedBox(
-                height: MediaQuery.of(context).size.height*0.7,
+                height: MediaQuery.of(context).size.height*0.6,
                 // width: double.maxFinite,
                 child:TabBarView(
                     controller: tabController,
