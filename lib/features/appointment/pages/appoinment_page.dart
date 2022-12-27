@@ -41,6 +41,11 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
               Text("Appointment", style:TextStyle(fontWeight: FontWeight.w600,fontSize: 40,),),
               SizedBox(height: 20,),
               Container(
+                decoration: BoxDecoration(
+                  //This is for background color
+                    color: Colors.white.withOpacity(0.0),
+                    //This is for bottom border that is needed
+                    border: Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
                 child: TabBar(
                   controller: tabController,
                     labelColor: Colors.cyanAccent,
