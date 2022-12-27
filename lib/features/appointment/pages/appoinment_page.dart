@@ -30,8 +30,8 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
     // TabController tabController = TabController(length: 3, vsync: this);
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
+      body:
+       Container(
           height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.all(20),
           child: Column(
@@ -54,7 +54,8 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
 
                     ),
               ),
-               Expanded(
+               SizedBox(
+                 height: MediaQuery.of(context).size.height*0.7,
                   // width: double.maxFinite,
                    child:TabBarView(
                   controller: tabController,
@@ -63,9 +64,9 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
                       // padding: EdgeInsets.all(6),
                       child: ListView.builder(
 
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: ScrollPhysics(),
                           // shrinkWrap: true,
-                          itemCount:3,
+                          itemCount:10,
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context,index){
 
@@ -76,20 +77,21 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
                         // padding: EdgeInsets.all(6),
                         child: ListView.builder(
 
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: ScrollPhysics(),
                             // shrinkWrap: true,
-                            itemCount:3,
+                            itemCount:10,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context,index){
 
                               return AppointmentCard();
                             }),
                       ),
+
                       Container(
                         // padding: EdgeInsets.all(6),
                         child: ListView.builder(
 
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: ScrollPhysics(),
                             // shrinkWrap: true,
                             itemCount:3,
                             scrollDirection: Axis.vertical,
@@ -104,7 +106,7 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
             ],
           ),
         ),
-      ),
-    );
+      );
+
   }
 }
