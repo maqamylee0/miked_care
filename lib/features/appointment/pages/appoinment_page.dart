@@ -14,11 +14,7 @@ class AppointmentPage extends StatefulWidget {
 
 
 class _AppointmentPageState extends State<AppointmentPage>with TickerProviderStateMixin {
-  List<Text> tabChildren = [
-    Text("hi1"),
-    Text("hi2"),
-    Text("hi3"),
-  ];
+
   late TabController tabController;
   @override
   void initState() {
