@@ -2,7 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/features/appointment/pages/appoinment_page.dart';
-import 'package:miked_care/features/appointment/widgets/book_appointment.dart';
+import 'package:miked_care/features/appointment/pages/book_appointment_page.dart';
 import 'package:miked_care/features/auth/pages/login_page.dart';
 import 'package:miked_care/features/auth/widgets/new_password_set.dart';
 import 'package:miked_care/features/auth/pages/reset_password_page.dart';

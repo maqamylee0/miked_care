@@ -60,47 +60,13 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
                      child:TabBarView(
                     controller: tabController,
                       children:  [
-                      Container(
-                        // padding: EdgeInsets.all(6),
-                        child: ListView.builder(
+                        UpcomingView(),
+                        FinishedView(),
 
-                            physics: ScrollPhysics(),
-                            // shrinkWrap: true,
-                            itemCount:10,
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (context,index){
-
-                              return AppointmentCard();
-                            }),
-                      ),
-                        Container(
-                          // padding: EdgeInsets.all(6),
-                          child: ListView.builder(
-
-                              physics: ScrollPhysics(),
-                              // shrinkWrap: true,
-                              itemCount:10,
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (context,index){
-
-                                return AppointmentCard();
-                              }),
-                        ),
-
-                        Container(
-                          // padding: EdgeInsets.all(6),
-                          child: ListView.builder(
-
-                              physics: ScrollPhysics(),
-                              // shrinkWrap: true,
-                              itemCount:3,
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (context,index){
-
-                                return AppointmentCard();
-                              }),
-                        ),
-                      ])),
+                        CancelledView(),
+                      ]
+                    )
+                  ),
 
 
               ],
@@ -109,5 +75,74 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
        ),
       );
 
+  }
+}
+
+class CancelledView extends StatelessWidget {
+  const CancelledView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.all(6),
+      child: ListView.builder(
+
+          physics: ScrollPhysics(),
+          // shrinkWrap: true,
+          itemCount:3,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context,index){
+
+            return AppointmentCard();
+          }),
+    );
+  }
+}
+
+class FinishedView extends StatelessWidget {
+  const FinishedView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.all(6),
+      child: ListView.builder(
+
+          physics: ScrollPhysics(),
+          // shrinkWrap: true,
+          itemCount:10,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context,index){
+
+            return AppointmentCard();
+          }),
+    );
+  }
+}
+
+class UpcomingView extends StatelessWidget {
+  const UpcomingView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.all(6),
+      child: ListView.builder(
+
+          physics: ScrollPhysics(),
+          // shrinkWrap: true,
+          itemCount:10,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context,index){
+
+            return AppointmentCard();
+          }),
+    );
   }
 }
