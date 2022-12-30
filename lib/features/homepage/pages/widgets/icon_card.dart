@@ -30,7 +30,7 @@ class IconCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20,),
+                  SizedBox(height: 10,),
                     Center(
                       child: SvgPicture.asset(
                         '$pathToIcon',
@@ -40,7 +40,7 @@ class IconCard extends StatelessWidget {
                       ),
                     ) ,
 
-                  SizedBox(height: 20,),
+                  SizedBox(height: 5,),
                   Padding(
                     padding: EdgeInsets.all(3.0),
                     child: Text("$title",style: TextStyle(fontWeight: FontWeight.bold),),

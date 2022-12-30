@@ -9,6 +9,8 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:miked_care/features/auth/pages/login_page.dart';
 import 'package:miked_care/features/auth/widgets/verify_code.dart';
+import 'package:miked_care/features/dashboard/views/pages/dashboard_page.dart';
+import 'package:miked_care/features/homepage/pages/homepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
@@ -106,7 +108,7 @@ class Auth{
 
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  Survey())
+          MaterialPageRoute(builder: (context) =>  DashboardPage())
 
       );
     } on FirebaseException catch(e){
