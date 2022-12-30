@@ -13,30 +13,34 @@ class AppointmentCard extends StatefulWidget {
 class _AppointmentCardState extends State<AppointmentCard> {
   @override
   Widget build(BuildContext context) {
+    var totalWidth = MediaQuery.of(context).size.width;
+
     return Container(
+      padding: EdgeInsets.all(5),
+      width: totalWidth*0.6,
       child: Column(
         children: [
           Row(
             children: [
               Container(
-                margin: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage("personimage/emily.jpg"), fit: BoxFit.cover),
+                    image: DecorationImage(image: AssetImage("assets/emily.jpg"), fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(10)
                 ),
                 height: 120,
                 width: 115,
 
               ),
+              SizedBox(width: 10,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Text('Dr.Edidiong Ishola'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Text('confirmed',style: TextStyle(color: Colors.grey),),
                   ),
                   Row(
@@ -63,15 +67,19 @@ class _AppointmentCardState extends State<AppointmentCard> {
               )
             ],
           ),
-          SizedBox(height: 10,),
-          Row(
-            children: [
+          SizedBox(height: 5,),
+          Container(
+            // width: totalWidth * 0.6,
+            child: Row(
 
-              Appointment_button(title:"Reschedule"),
-              SizedBox(width: 20,),
-              Appointment_button(title:"Cancel Appointment"),
+              children: [
 
-            ],
+                Appointment_button(title:"Reschedule"),
+                SizedBox(width: 10,),
+                Appointment_button(title:"Cancel Appointment"),
+
+              ],
+            ),
           )
         ],
       ),

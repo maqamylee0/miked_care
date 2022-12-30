@@ -25,7 +25,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(DevicePreview(builder: (BuildContext context) => MyApp()));
+  runApp(
+  MyApp());
+      // DevicePreview(builder: (BuildContext context) => MyApp()));
 }
 
 class MyApp extends StatelessWidget {

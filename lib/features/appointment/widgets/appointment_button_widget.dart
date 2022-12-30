@@ -11,7 +11,7 @@ class Appointment_button extends StatelessWidget {
     return ElevatedButton(
 
       style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(Size(150, 35)),
+        minimumSize: MaterialStateProperty.all(Size(120, 35)),
         padding:  MaterialStateProperty.all(EdgeInsets.fromLTRB(12, 5, 12, 5)),                                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
 
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(

@@ -9,8 +9,10 @@ class HistoryCard extends StatefulWidget {
 }
 
 class _HistoryCardState extends State<HistoryCard> {
+
   @override
   Widget build(BuildContext context) {
+    var totalWidth = MediaQuery.of(context).size.width;
     return Container(
       child:
           Column(
@@ -20,63 +22,65 @@ class _HistoryCardState extends State<HistoryCard> {
                   Container(
                     margin: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage("personimage/emily.jpg"), fit: BoxFit.cover),
+                        image: DecorationImage(image: AssetImage("assets/personimage/emily.jpg"), fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(100)
                     ),
-                    height: 80,
-                    width: 80,
+                    height: 60,
+                    width: 60,
 
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
 
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(8,8,8,8),
-                                child: Text("Wendy Watson",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
-                              ),
-
-
-                          SizedBox(width: 10,),
-
-                              Text('07:30 pm',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17))
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(4,4,4,4),
+                                  child: Text("Wendy Watson",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
+                                ),
 
 
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                            SizedBox(width: 5,),
 
-                          Text("Thanks for your time"),
+                                Text('07:30 pm',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17))
 
 
-                          SizedBox(width: 20,),
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
 
-                              Container(
-                                padding: EdgeInsets.fromLTRB(10, 7, 10, 7),
-                                child: Text('2',style: TextStyle(fontWeight: FontWeight.w600),),
-                                  decoration: BoxDecoration(
-                                    color: Colors.cyanAccent,
-                                      borderRadius: BorderRadius.circular(100)
-                                  )),
-
+                            Text("Thanks for your time"),
 
 
-                            ],
-                          )
-                        ],
-                      )
+                            SizedBox(width: 10,),
+
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(10, 7, 10, 7),
+                                  child: Text('2',style: TextStyle(fontWeight: FontWeight.w600),),
+                                    decoration: BoxDecoration(
+                                      color: Colors.cyanAccent,
+                                        borderRadius: BorderRadius.circular(100)
+                                    )),
+
+
+
+                              ],
+                            )
+                          ],
+                        ),
+                  )
                     ],
                   ),
               Divider(
                 color: Colors.grey,
-                endIndent: 20,
-                indent: 20
+                endIndent: 10,
+                indent: 10
                 ,
               )
             ],
