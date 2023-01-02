@@ -12,6 +12,7 @@ import 'package:miked_care/features/auth/pages/verify_success_page.dart';
 import 'package:miked_care/features/auth/widgets/verify_code.dart';
 import 'package:miked_care/features/homepage/pages/homepage.dart';
 
+import 'features/appointment/pages/make_payment_page.dart';
 import 'features/blogs/pages/blog_page.dart';
 import 'features/dashboard/views/pages/dashboard_page.dart';
 import 'features/history/pages/history_page.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
       )),
-      home: AppointmentFormPage(),
+      home: MakePaymentPage(),
 
     );
   }
