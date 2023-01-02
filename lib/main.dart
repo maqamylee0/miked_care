@@ -11,6 +11,7 @@ import 'package:miked_care/features/auth/pages/sign_up_page.dart';
 import 'package:miked_care/features/auth/pages/verify_success_page.dart';
 import 'package:miked_care/features/auth/widgets/verify_code.dart';
 import 'package:miked_care/features/homepage/pages/homepage.dart';
+import 'package:miked_care/features/profile/pages/edit_profile.dart';
 
 import 'features/appointment/pages/make_payment_page.dart';
 import 'features/blogs/pages/blog_page.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
       )),
-      home: ProfilePage(),
+      home: EditProfile(),
 
     );
   }
