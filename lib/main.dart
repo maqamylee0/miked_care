@@ -16,6 +16,7 @@ import 'features/appointment/pages/make_payment_page.dart';
 import 'features/blogs/pages/blog_page.dart';
 import 'features/dashboard/views/pages/dashboard_page.dart';
 import 'features/history/pages/history_page.dart';
+import 'features/profile/pages/profile_page.dart';
 import 'features/slider/welcome_slider.dart';
 import 'firebase_options.dart';
 
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
       )),
-      home: MakePaymentPage(),
+      home: ProfilePage(),
 
     );
   }
