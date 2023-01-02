@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/features/appointment/pages/appoinment_page.dart';
+import 'package:miked_care/features/appointment/pages/appointment_form_page.dart';
 import 'package:miked_care/features/appointment/pages/book_appointment_page.dart';
 import 'package:miked_care/features/auth/pages/login_page.dart';
 import 'package:miked_care/features/auth/widgets/new_password_set.dart';
@@ -26,8 +27,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-  MyApp());
-      // DevicePreview(builder: (BuildContext context) => MyApp()));
+  // MyApp());
+      DevicePreview(builder: (BuildContext context) => MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
       )),
-      home: DashboardPage(),
+      home: AppointmentFormPage(),
 
     );
   }
