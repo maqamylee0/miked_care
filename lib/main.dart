@@ -32,8 +32,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-  // MyApp());
-      DevicePreview(builder: (BuildContext context) => MyApp()));
+  MyApp());
+  //     DevicePreview(builder: (BuildContext context) => MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
       )),
-      home: FaqPage(),
+      home: DashboardPage(),
 
     );
   }

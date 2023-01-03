@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:miked_care/features/profile/pages/about_us.dart';
+import 'package:miked_care/features/profile/pages/edit_profile.dart';
+import 'package:miked_care/features/profile/pages/faq_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -21,7 +24,6 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50,),
              Text("Profile",
                     style: TextStyle(
                         color: Colors.black,
@@ -32,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 alignment: Alignment.center,
                 child: Container(
                   decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage("personimage/emily.jpg"), fit: BoxFit.cover),
+                      image: DecorationImage(image: AssetImage("assets/emily.jpg"), fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(100)
                   ),
                   height: 90,
@@ -52,7 +54,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   Text("Edit Profile",style: TextStyle(color: Colors.grey)),
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => const EditProfile()));
+                      },
                       icon:Icon(Icons.arrow_forward_ios,size: 14,))
                 ],
               ),
@@ -84,7 +89,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   Text("FAQs",style: TextStyle(color: Colors.grey)),
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => const FaqPage()));
+                      },
                       icon:Icon(Icons.arrow_forward_ios,size: 14,))
                 ],
               ),
@@ -93,7 +101,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   Text("About Us",style: TextStyle(color: Colors.grey)),
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => const AboutUs()));
+                      },
                       icon:Icon(Icons.arrow_forward_ios,size: 14,))
                 ],
               ),

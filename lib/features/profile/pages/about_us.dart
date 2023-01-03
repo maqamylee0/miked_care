@@ -48,7 +48,7 @@ class _AboutUsState extends State<AboutUs> {
         child: Align(
             alignment: Alignment.center,
             child: Text("MIKEDCAREs is a social enterprise that provides perinatal mental health support services for women of childbearing ages, parents and child caregivers, helping them informed decisions that promote their mental health and well being while also raising children that will make a better society",style: TextStyle(
-                height:1.5,fontSize: 20),)
+                height:1.3,fontSize: 20),)
 
         ),
       ),
@@ -109,18 +109,18 @@ class _AboutUsState extends State<AboutUs> {
                           Text("2021 - 2022 MIKEDCAREs® Inc."),
                         ],
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(height: 10,),
 
                       Row(
                         children: [
                           Text(" All Rights Reserved."),
-                          SizedBox(width: 20,),
+                          SizedBox(width: 10,),
 
                           Row(
                             children: [
-                              TextButton(onPressed: (){}, child: Text("Privacy Policy")),
-                              SizedBox(width: 20,),
-                              TextButton(onPressed: (){}, child: Text("Terms"))
+                              TextButton(onPressed: (){}, child: Text("Privacy Policy",style: TextStyle(fontSize: 12))),
+                              SizedBox(width: 5,),
+                              TextButton(onPressed: (){}, child: Text("Terms",style: TextStyle(fontSize: 12),))
                             ],
                           )
 
@@ -131,7 +131,7 @@ class _AboutUsState extends State<AboutUs> {
 
               ),
             ),
-            flex: 3, //default flex is 2
+            flex: 10, //default flex is 2
           ),
         ),
       )

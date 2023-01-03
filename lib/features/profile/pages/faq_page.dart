@@ -97,13 +97,13 @@ class _FaqPageState extends State<FaqPage> {
                       Row(
                         children: [
                           Text(" All Rights Reserved."),
-                          SizedBox(width: 20,),
+                          SizedBox(width: 10,),
 
                           Row(
                             children: [
-                              TextButton(onPressed: (){}, child: Text("Privacy Policy")),
-                              SizedBox(width: 20,),
-                              TextButton(onPressed: (){}, child: Text("Terms"))
+                              TextButton(onPressed: (){}, child: Text("Privacy Policy",style: TextStyle(fontSize: 12),)),
+                              SizedBox(width: 5,),
+                              TextButton(onPressed: (){}, child: Text("Terms",style: TextStyle(fontSize: 12)))
                             ],
                           )
 
@@ -114,7 +114,7 @@ class _FaqPageState extends State<FaqPage> {
 
                 ),
               ),
-              flex: 5, //default flex is 2
+              flex: 10, //default flex is 2
             ),
           ),
         )

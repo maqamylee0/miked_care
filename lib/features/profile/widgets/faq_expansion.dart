@@ -40,7 +40,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget> {
             title: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                  '${widget.step.body}',style: TextStyle(fontSize: 20,height: 1.5),
+                  '${widget.step.body}',style: TextStyle(fontSize: 15,height: 1.5),
               ),
             ),
           )
