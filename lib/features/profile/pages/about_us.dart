@@ -133,7 +133,10 @@ class _AboutUsState extends State<AboutUs> {
             ),
             flex: 3, //default flex is 2
           ),
-        ),));}}
+        ),
+      )
+    );
+  }}
 
 
 

@@ -13,6 +13,7 @@ import 'package:miked_care/features/auth/widgets/verify_code.dart';
 import 'package:miked_care/features/homepage/pages/homepage.dart';
 import 'package:miked_care/features/profile/pages/about_us.dart';
 import 'package:miked_care/features/profile/pages/edit_profile.dart';
+import 'package:miked_care/features/profile/pages/faq_page.dart';
 
 import 'features/appointment/pages/make_payment_page.dart';
 import 'features/blogs/pages/blog_page.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
       )),
-      home: AboutUs(),
+      home: FaqPage(),
 
     );
   }
