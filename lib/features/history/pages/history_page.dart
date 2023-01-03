@@ -59,46 +59,10 @@ class _HistoryPageState extends State<HistoryPage>with TickerProviderStateMixin 
                   child:TabBarView(
                       controller: tabController,
                       children:  [
-                        Container(
-                          // padding: EdgeInsets.all(6),
-                          child: ListView.builder(
+                        history_card(),
+                        history_card(),
+                        history_card(),
 
-                              physics: ScrollPhysics(),
-                              // shrinkWrap: true,
-                              itemCount:10,
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (context,index){
-
-                                return HistoryCard();
-                              }),
-                        ),
-                        Container(
-                          // padding: EdgeInsets.all(6),
-                          child: ListView.builder(
-
-                              physics: ScrollPhysics(),
-                              // shrinkWrap: true,
-                              itemCount:10,
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (context,index){
-
-                                return  HistoryCard();
-                              }),
-                        ),
-
-                        Container(
-                          // padding: EdgeInsets.all(6),
-                          child: ListView.builder(
-
-                              physics: ScrollPhysics(),
-                              // shrinkWrap: true,
-                              itemCount:3,
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (context,index){
-
-                                return  HistoryCard();
-                              }),
-                        ),
                       ])),
 
 
@@ -106,6 +70,29 @@ class _HistoryPageState extends State<HistoryPage>with TickerProviderStateMixin 
           ),
         ),
       ),
+    );
+  }
+}
+
+class history_card extends StatelessWidget {
+  const history_card({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.all(6),
+      child: ListView.builder(
+
+          physics: ScrollPhysics(),
+          // shrinkWrap: true,
+          itemCount:10,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context,index){
+
+            return HistoryCard();
+          }),
     );
   }
 }
