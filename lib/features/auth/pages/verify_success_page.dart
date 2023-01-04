@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:miked_care/features/dashboard/views/pages/dashboard_page.dart';
 
 import '../../survey/survey.dart';
 
@@ -49,6 +50,6 @@ class _VerifySuccessPageState extends State<VerifySuccessPage> {
 
   void onPressed() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const Survey()));
+        context, MaterialPageRoute(builder: (context) => const DashboardPage()));
   }
 }

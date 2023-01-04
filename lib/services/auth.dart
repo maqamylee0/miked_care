@@ -77,11 +77,15 @@ class Auth{
     User? user=_auth.currentUser;
     userModel.email = user!.email;
     userModel.uid = user!.uid;
+    userModel.photoUrl = user!.photoURL;
+
     // sendVerificationCode(context, userModel.email );
 
     //save uid of user in local storage
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('userid', '${user!.uid}');
+    await prefs.setString('username', '${userModel.name}');
+    await prefs.setString('photoUrl', '${user!.photoURL}');
 
     Navigator.push(
             context,
@@ -142,6 +146,34 @@ class Auth{
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<UserModel> getUserDetails() async {
+    late UserModel doc ;
+    //     builder: (context) => const Center(child: CircularProgressIndicator()));
+    final prefs = await SharedPreferences.getInstance();
+    final userid = prefs.getString('userid');
+    final username = prefs.getString('username');
+    final photoUrl = prefs.getString('photoUrl');
+
+    try{
+      FirebaseFirestore mFirebaseFirestore = FirebaseFirestore.instance;
+
+      await mFirebaseFirestore.collection('users')
+          .where('uid', isEqualTo: userid)
+          .get()
+          .then((snapshot)  {
+             doc = UserModel.fromMap(snapshot.docs[0]) ;
+          });
+
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+    // navigatorKey.currentState!.popUntil((route)=>route.);
+    // print(doc['nin']);
+    return doc;
   }
 
 }

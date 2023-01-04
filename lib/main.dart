@@ -14,6 +14,8 @@ import 'package:miked_care/features/homepage/pages/homepage.dart';
 import 'package:miked_care/features/profile/pages/about_us.dart';
 import 'package:miked_care/features/profile/pages/edit_profile.dart';
 import 'package:miked_care/features/profile/pages/faq_page.dart';
+import 'package:miked_care/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'features/appointment/pages/make_payment_page.dart';
 import 'features/blogs/pages/blog_page.dart';
@@ -31,13 +33,18 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-  MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => UserProvider()),
+    ],
+    child: MyApp(),
+  ));
   //     DevicePreview(builder: (BuildContext context) => MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,9 +57,17 @@ class MyApp extends StatelessWidget {
         // secondary: const Color(0xFF16E4E4)
         // secondary: const Color(0xFFFFC107),
         // primaryColor: Colors.cyanAccent,
-      )),
-      home: DashboardPage(),
 
+      )),
+      routes: {
+        'home': (context) => const DashboardPage(),
+        'AppointmentForm': (context) => const AppointmentFormPage(),
+        'make_payment':(context) => const MakePaymentPage(),
+        'sessions':(context) => const AppointmentPage(),
+        'profile':(context) => const ProfilePage(),
+
+      },
+      home: WelcomeSlider(),
     );
   }
 }
