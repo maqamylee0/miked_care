@@ -15,6 +15,11 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
   late int selectedRadioTile2;
   late int selectedRadio2;
 
+  TimeOfDay time = TimeOfDay(hour: 8, minute: 00);
+  DateTime date = DateTime(2023);
+
+
+
   @override
   void initState() {
     super.initState();
@@ -45,6 +50,7 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 5,),
               Container(
 
                 child: IconButton(onPressed:(){
@@ -72,7 +78,7 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
                 height: 20,
               ),
 
-              Text("1. What kind of therapy would you like to have?",style:TextStyle(fontWeight: FontWeight.w600,fontSize:20 ),),
+              Text("1. What kind of therapy would you like to have?",style:TextStyle(fontWeight: FontWeight.w600,fontSize:17 ),),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: Row(
@@ -151,7 +157,7 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
               ),
               SizedBox(height: 5,),
 
-              Text("2. What kind of therapy would you like to have?",style:TextStyle(fontWeight: FontWeight.w600,fontSize:20 ),),
+              Text("2. What kind of therapy would you like to have?",style:TextStyle(fontWeight: FontWeight.w600,fontSize:17 ),),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: Row(
@@ -161,7 +167,7 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
                         value: 1,
                         groupValue: selectedRadioTile2,
                         contentPadding: EdgeInsets.all(0),
-                        title: Text("Fexible"),
+                        title: Text("Flexible"),
                         dense: true,
 
                         // subtitle: Text("Radio 1 Subtitle"),
@@ -208,67 +214,86 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
                 ),
               ),
               SizedBox(height: 5,),
-              Text("3. Set the date and time you would like to have the therapy",style:TextStyle(fontWeight: FontWeight.w600,fontSize:20 ),),
+              Text("3. Set the date and time you would like to have the therapy",style:TextStyle(fontWeight: FontWeight.w600,fontSize:17 ),),
+
+              SizedBox(height: 5,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(" Date",style:TextStyle(fontWeight: FontWeight.w600,fontSize:20 ),),
+                child: Text(" Date",style:TextStyle(fontWeight: FontWeight.w600,fontSize:15 ),),
               ),
 
-              TextFormField(
-                keyboardType: TextInputType.text,
-                // controller: _emailController,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                // validator: (email) =>
-                // email != null && EmailValidator.validate(email)
-                //     ? null
-                //     : "Enter valid Email",
-                decoration: InputDecoration(
-                  labelText: '02/04/2022',
-                  // hintText: '02/04/2022',
-                  // Here is key idea
-                  prefixIcon: IconButton(
+              Row(
+                children: [
+                  IconButton(
+                          icon: Icon(Icons.arrow_drop_down),
+                          color: Colors.grey,
+                          onPressed: () {
+                            _showDatePicker();
+
+                          },
+                        ),
+                  Text("${date.day} / ${date.month} / ${date.year}")
+                ],
+              ),
+              Divider(
+                indent: 10,
+                endIndent: 10,
+                color: Colors.grey,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(" Time",style:TextStyle(fontWeight: FontWeight.w600,fontSize:15 ),),
+              ),
+              Row(
+                children: [
+                  IconButton(
                     icon: Icon(Icons.arrow_drop_down),
                     color: Colors.grey,
                     onPressed: () {
+                      _showTimePicker();
 
                     },
                   ),
-                ),
+                  Text("${time.format(context).toString()}")
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(" Time",style:TextStyle(fontWeight: FontWeight.w600,fontSize:20 ),),
+              Divider(
+                indent: 10,
+                endIndent: 10,
+                color: Colors.grey,
               ),
 
-              TextFormField(
-                keyboardType: TextInputType.text,
-                // controller: _emailController,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                // validator: (email) =>
-                // email != null && EmailValidator.validate(email)
-                //     ? null
-                //     : "Enter valid Email",
-                decoration: InputDecoration(
-                  labelText: '08:00 pm',
-                  hintText: '02/04/2022',
-                  // Here is key idea
-                  prefixIcon: IconButton(
-                    icon: Icon(Icons.arrow_drop_down),
-                    color: Colors.grey,
-                    onPressed: () {
 
-                    },
-                  ),
-                ),
-              ),
+
+
+
               SizedBox(height: 20,),
               SizedBox(
                 height: 55,
-                  child: LargeButton(title: "Continue",))
+                  child: LargeButton(title: "Continue", path: 'make_payment',))
             ],
           ),
         ),
       ),
     );
+  }
+  _showDatePicker(){
+    showDatePicker(context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2022),
+        lastDate: DateTime(2025)
+    ).then((value) =>
+        setState((){
+      date  = value!  ;
+    }
+    ));
+  }
+  _showTimePicker(){
+    showTimePicker(context: context, initialTime: TimeOfDay.now()).then((value) =>
+        setState((){
+          time  = value! ;
+        }
+        ));
+
   }
 }

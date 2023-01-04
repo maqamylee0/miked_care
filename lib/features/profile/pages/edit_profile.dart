@@ -145,7 +145,7 @@ class _EditProfileState extends State<EditProfile> {
                 SizedBox(height: 50,),
                 SizedBox(
                   height: 50,
-                  child: LargeButton(title:"Save"),
+                  child: LargeButton(title:"Save", path: 'profile',),
                 )
               ],
             ),
