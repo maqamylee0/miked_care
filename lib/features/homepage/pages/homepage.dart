@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:miked_care/Utils/image_assets_constants.dart';
 import 'package:miked_care/features/appointment/pages/book_appointment_page.dart';
+import 'package:miked_care/features/homepage/pages/widgets/cached_image_widget.dart';
 import 'package:miked_care/features/homepage/pages/widgets/circular_avatar.dart';
 import 'package:miked_care/providers/user_provider.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -38,11 +40,11 @@ class _HomePageState extends State<HomePage> {
                       Consumer<UserProvider>(
                         builder: (BuildContext context, value, Widget? child) {
                           return (value.isLoaded == true)
-                              ? Text("Hello, ${value.getUserName()}",
+                              ? Text("Hello, ${value.username}",
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold))
-                              : Text("Hello, ...",
+                              : Text("",
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold));
@@ -57,9 +59,8 @@ class _HomePageState extends State<HomePage> {
                               return (value.photonull == true)
                                   ? CircularAvator(
                                       image_path: ImageAssetConstants.account)
-                                  : CircularAvator(
-                                      image_path:
-                                          value.getPhotoUrl() as String);
+                                  : CachedImage(
+                                      image_path: value.photoUrl);
                             },
                           ),
                           Positioned(
