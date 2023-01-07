@@ -14,6 +14,7 @@ import 'package:miked_care/features/homepage/pages/homepage.dart';
 import 'package:miked_care/features/profile/pages/about_us.dart';
 import 'package:miked_care/features/profile/pages/edit_profile.dart';
 import 'package:miked_care/features/profile/pages/faq_page.dart';
+import 'package:miked_care/providers/appointment_provider.dart';
 import 'package:miked_care/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +37,8 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => UserProvider()),
+      ChangeNotifierProvider(create: (context) => AppointmentProvider()),
+
     ],
     child: MyApp(),
   ));
