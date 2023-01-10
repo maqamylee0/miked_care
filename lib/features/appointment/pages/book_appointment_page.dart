@@ -7,6 +7,7 @@ import 'package:miked_care/services/therapist_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/appointment_provider.dart';
+import '../widgets/review_list.dart';
 
 class BookAppointment extends StatefulWidget {
   const BookAppointment({Key? key,required this.therapistInfo}) : super(key: key);
@@ -34,6 +35,8 @@ class _BookAppointmentState extends State<BookAppointment> {
   Widget build(BuildContext context) {
 
     var totalWidth = MediaQuery.of(context).size.width;
+    final reviews = Provider.of<AppointmentProvider>(context);
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 
 
@@ -167,7 +170,12 @@ class _BookAppointmentState extends State<BookAppointment> {
                         ],
                       ),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            var sheetController = showModalBottomSheet(
+                                context: context,
+                                builder: (context) => ReviewList(reviews: reviews.reviews));
+                            sheetController.then((value) {});
+                          },
                           child: Text(
                             "see all",
                           ))

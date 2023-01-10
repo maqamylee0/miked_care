@@ -78,7 +78,7 @@ class TherapistService {
         print(e);
       }
     }
-    print(doc.name);
+    // print(doc.name);
     return doc;
   }
 }

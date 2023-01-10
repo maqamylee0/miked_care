@@ -34,6 +34,7 @@ class AppointmentProvider extends ChangeNotifier{
   }
   Future<void> getTherapistReviews(List<dynamic> reviewIds) async {
     reviews = await _therapistService.getTherapistReviews(reviewIds);
+
     // notifyListeners();
     message =  reviews[0].message;
     await getUser(reviews[0].userId);
@@ -44,5 +45,6 @@ class AppointmentProvider extends ChangeNotifier{
   username = user.name!;
   notifyListeners();
   }
+
 
 }
