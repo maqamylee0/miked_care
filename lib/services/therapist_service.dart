@@ -62,8 +62,8 @@ class TherapistService {
     return doc;
   }
 
-  Future<UserModel> getUserDetails(String uid) async {
-    late UserModel doc;
+  Future<Users> getUserDetails(String uid) async {
+    late Users doc;
     try {
       FirebaseFirestore mFirebaseFirestore = FirebaseFirestore.instance;
 
@@ -71,7 +71,7 @@ class TherapistService {
           .where('uid', isEqualTo: uid)
           .get()
           .then((snapshot) {
-        doc = UserModel.fromMap(snapshot.docs[0]);
+        doc = Users.fromJson(snapshot.docs[0].data());
       });
     } catch (e) {
       if (kDebugMode) {

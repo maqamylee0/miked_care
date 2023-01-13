@@ -227,7 +227,7 @@ class _SignUpPageState extends State<SignUpPage> {
     final isValid = formKey.currentState!.validate();
 
     if (isValid && _checkboxValue == true) {
-      UserModel userModel = UserModel();
+      Users userModel = Users();
       // writing all the values
 
       userModel.name = _nameController.text;

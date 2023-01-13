@@ -59,6 +59,8 @@ dependencies:
   footer: ^0.0.4
   provider: ^6.0.5
   cached_network_image: ^3.2.3
+  json_serializable: ^6.5.4
+  json_annotation: ^4.7.0
 
 
 dev_dependencies:
@@ -71,6 +73,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.3
 
 #  splash screen for project
 flutter_native_splash:

@@ -12,7 +12,7 @@ class AppointmentProvider extends ChangeNotifier{
    List<Review> reviews = [] ;
   // late List<dynamic> reviewIds;
   late String? message ='' ;
-  late UserModel user;
+  late Users user;
   String username ='';
   var _therapistService;
 
@@ -27,6 +27,18 @@ class AppointmentProvider extends ChangeNotifier{
   //   notifyListeners();
   //
   // }
+  void setReview(List review){
+    reviews = reviews;
+    notifyListeners();
+  }
+  void setMessage(String message){
+    message = message;
+    notifyListeners();
+  }
+  void setUsername(String username){
+    username = username;
+    notifyListeners();
+  }
 
   Future<void> getAllTherapists() async {
     therapists = await _therapistService.getAllTherapists();

@@ -18,7 +18,7 @@ final Review review;
 }
 
 class _ReviewCardState extends State<ReviewCard> {
-   UserModel? user;
+   Users? user;
   @override
   void initState() {
     super.initState();
@@ -143,7 +143,7 @@ class _ReviewCardState extends State<ReviewCard> {
 
   Future<void> getvalues() async {
     TherapistService therapistService = TherapistService();
-    UserModel user1 = await therapistService.getUserDetails(widget.review.userId!);
+    Users user1 = await therapistService.getUserDetails(widget.review.userId!);
 
     setState(()  {
      user = user1;

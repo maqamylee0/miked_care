@@ -13,9 +13,10 @@ import 'package:miked_care/features/dashboard/views/pages/dashboard_page.dart';
 import 'package:miked_care/features/homepage/pages/homepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../features/auth/models/user.dart';
 import '../main.dart';
 import '../features/survey/survey.dart';
-import '../features/auth/models/user.dart';
+import '../features/auth/models/user.dart' as UserModel;
 import '../features/auth/widgets/checkmail.dart';
 
 ///
@@ -73,18 +74,18 @@ class Auth{
     }
     // navigatorKey.currentState!.popUntil((route)=>route.isFirst);
   }
-  postDetailsToFirestore(userModel,context) async {
+  postDetailsToFirestore(Users users,context) async {
     User? user=_auth.currentUser;
-    userModel.email = user!.email;
-    userModel.uid = user!.uid;
-    userModel.photoUrl = user!.photoURL;
+    users.email = user!.email;
+    users.uid = user!.uid;
+    users.photoUrl = user!.photoURL;
 
     // sendVerificationCode(context, userModel.email );
 
     //save uid of user in local storage
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('userid', '${user!.uid}');
-    await prefs.setString('username', '${userModel.name}');
+    await prefs.setString('username', '${users.name}');
     await prefs.setString('photoUrl', '${user!.photoURL}');
 
     Navigator.push(
@@ -97,8 +98,8 @@ class Auth{
 
     await firebaseFirestore
         .collection("users")
-        .doc(userModel.uid)
-        .set(userModel.toMap());
+        .doc(users.uid)
+        .set(users.toJson());
 
     Fluttertoast.showToast(msg: "Account created successfully :) ");
 
@@ -148,8 +149,8 @@ class Auth{
     }
   }
 
-  Future<UserModel> getUserDetails() async {
-    late UserModel doc ;
+  Future<Users> getUserDetails() async {
+    late Users doc ;
     //     builder: (context) => const Center(child: CircularProgressIndicator()));
     final prefs = await SharedPreferences.getInstance();
     final userid = prefs.getString('userid');
@@ -162,8 +163,8 @@ class Auth{
       await mFirebaseFirestore.collection('users')
           .where('uid', isEqualTo: userid)
           .get()
-          .then((snapshot)  {
-             doc = UserModel.fromMap(snapshot.docs[0]) ;
+          .then((snapshot)  async {
+             doc =  Users.fromJson(snapshot.docs[0].data()) ;
           });
 
     } catch (e) {

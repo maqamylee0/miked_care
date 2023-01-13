@@ -36,7 +36,7 @@ class _BookAppointmentState extends State<BookAppointment> {
 
     var totalWidth = MediaQuery.of(context).size.width;
     final reviews = Provider.of<AppointmentProvider>(context);
-    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 
 
@@ -52,7 +52,12 @@ class _BookAppointmentState extends State<BookAppointment> {
                 Container(
                   child: IconButton(
                       onPressed: () {
+                        reviews.setReview([]);
+                        reviews.setMessage('');
+                        reviews.setUsername('');
                         Navigator.of(context).pop();
+
+
                       },
                       icon: Icon(Icons.arrow_back_ios, color: Colors.grey)),
                 ),
