@@ -7,9 +7,11 @@ import '../services/auth.dart';
 
 class UserProvider extends ChangeNotifier{
 
-     late UserModel _user;
+     late Users _user;
      bool isLoaded = false;
      bool photonull = true;
+     String username ='';
+     String photoUrl='';
      var _auth ;
 
     UserProvider(){
@@ -19,34 +21,16 @@ class UserProvider extends ChangeNotifier{
     }
 
 
-   String? getUserName() => _user.name;
-   Future<String?> getPhotoUrl() async {
-     return await getPhoto();
-   }
-
-
-
-
-     // void setUserProvider(){
-   //    user = auth.getUserDetails() as UserModel;
-   //    notifyListeners();
-   //  }
-     Future<String?> getPhoto() async {
-       if(isLoaded == true && _user.photoUrl != null)
-       photonull = false;
-       notifyListeners();
-       if (kDebugMode) {
-         print(isLoaded);
-       }
-       return _user.photoUrl;
-     }
   void getUserDetails() async {
-    _user = await _auth.getUserDetails() as UserModel;
+    _user = await _auth.getUserDetails() ;
     isLoaded = true;
-    notifyListeners();
+    photonull = false;
+    username  = _user.name!;
+    photoUrl = _user.photoUrl!;
     if (kDebugMode) {
       print(isLoaded);
     }
+    notifyListeners();
   }
 
 

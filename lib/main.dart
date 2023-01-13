@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/features/appointment/pages/appoinment_page.dart';
@@ -14,6 +15,7 @@ import 'package:miked_care/features/homepage/pages/homepage.dart';
 import 'package:miked_care/features/profile/pages/about_us.dart';
 import 'package:miked_care/features/profile/pages/edit_profile.dart';
 import 'package:miked_care/features/profile/pages/faq_page.dart';
+import 'package:miked_care/providers/appointment_provider.dart';
 import 'package:miked_care/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +38,8 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => UserProvider()),
+      ChangeNotifierProvider(create: (context) => AppointmentProvider()),
+
     ],
     child: MyApp(),
   ));
@@ -44,9 +48,10 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
@@ -65,9 +70,8 @@ class MyApp extends StatelessWidget {
         'make_payment':(context) => const MakePaymentPage(),
         'sessions':(context) => const AppointmentPage(),
         'profile':(context) => const ProfilePage(),
-
       },
-      home: WelcomeSlider(),
+      home: auth.currentUser != null ? DashboardPage():WelcomeSlider(),
     );
   }
 }

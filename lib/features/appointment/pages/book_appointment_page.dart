@@ -1,19 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/Utils/image_assets_constants.dart';
+import 'package:miked_care/features/appointment/models/therapist.dart';
 import 'package:miked_care/features/appointment/widgets/dashboard_button.dart';
+import 'package:miked_care/services/therapist_service.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/appointment_provider.dart';
+import '../widgets/review_list.dart';
 
 class BookAppointment extends StatefulWidget {
-  const BookAppointment({Key? key}) : super(key: key);
-
+  const BookAppointment({Key? key,required this.therapistInfo}) : super(key: key);
+ final Therapist therapistInfo;
   @override
   State<BookAppointment> createState() => _BookAppointmentState();
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
+
+  @override
+  void initState(){
+    super.initState();
+    // setIds();
+
+      }
+
+      @override
+  void dispose() {
+    super.dispose();
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
     var totalWidth = MediaQuery.of(context).size.width;
+    final reviews = Provider.of<AppointmentProvider>(context);
+    // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+
 
     return Scaffold(
       body: SafeArea(
@@ -27,7 +52,12 @@ class _BookAppointmentState extends State<BookAppointment> {
                 Container(
                   child: IconButton(
                       onPressed: () {
+                        reviews.setReview([]);
+                        reviews.setMessage('');
+                        reviews.setUsername('');
                         Navigator.of(context).pop();
+
+
                       },
                       icon: Icon(Icons.arrow_back_ios, color: Colors.grey)),
                 ),
@@ -50,14 +80,14 @@ class _BookAppointmentState extends State<BookAppointment> {
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Text(
-                          "Dr. Edidiong Ishola",
+                          "${widget.therapistInfo.name}",
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.w800),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Text("Parental Therapist",
+                        child: Text("${widget.therapistInfo.designation}",
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.w700)),
                       ),
@@ -81,7 +111,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                             fontSize: 16.0,
                           ),
                           text:
-                              "Dr. Edidiong Ishola is one of the top perinatal therapist in Nigeria. she has won several recognition in this field and has helped women in thier perinatal journey."),
+                              "${widget.therapistInfo.about}"),
                       WidgetSpan(
                           child: SizedBox(
                         height: 18,
@@ -145,7 +175,12 @@ class _BookAppointmentState extends State<BookAppointment> {
                         ],
                       ),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            var sheetController = showModalBottomSheet(
+                                context: context,
+                                builder: (context) => ReviewList(reviews: reviews.reviews));
+                            sheetController.then((value) {});
+                          },
                           child: Text(
                             "see all",
                           ))
@@ -202,24 +237,40 @@ class _BookAppointmentState extends State<BookAppointment> {
                   ],
                 ),
                 //   ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Taylor Swift",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+                Consumer<AppointmentProvider>(
+             builder: (BuildContext context, value, Widget? child) {
+               value.getTherapistReviews(widget.therapistInfo.reviewIds);
+               // value.getUser(value.reviews[0].userId);
+
+
+    return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: (value.reviews.isEmpty == true) ? Text(''):
+                    Text("${value.username}",
+                        style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+                  );}
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    // width: totalWidth*0.34,
-                    child: Text(
-                        "Dr. Edidiong is very professional in her work and responsive."
-                        " I really enjoyed my session with her",
-                        style: TextStyle(
-                          fontSize: 14,
-                        )),
-                  ),
-                ),
+                Consumer<AppointmentProvider>(
+                builder: (BuildContext context, value, Widget? child) {
+                  // AppointmentProvider().setreviewid(widget.therapistInfo.reviewIds);
+                  // value.getTherapistReviews(widget.therapistInfo.reviewIds);
+                  // value.getTherapistReviews(widget.therapistInfo.reviewIds);
+
+                  // value.getTherapistReviews(widget.therapistInfo.reviewIds);
+
+    return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+    // width: totalWidth*0.34,
+    child: (value.reviews.isEmpty == true) ?Text(''):Text(
+    "${value.message}",
+    style: TextStyle(
+    fontSize: 14,
+    )),
+    ),
+    );
+    }),
 
                 //       ],
                 //     ),
@@ -238,4 +289,9 @@ class _BookAppointmentState extends State<BookAppointment> {
       ),
     );
   }
+
+  // Future<void> setIds() async {
+  //   await AppointmentProvider().getTherapistReviews(widget.therapistInfo.reviewIds);
+  //
+  // }
 }
