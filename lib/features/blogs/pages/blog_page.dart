@@ -47,12 +47,13 @@ class _BlogPageState extends State<BlogPage> {
                 height: 20,
               ),
               Container(
+                width: MediaQuery.of(context).size.width,
                 height: 50,
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                       iconSize: 30,
@@ -60,34 +61,48 @@ class _BlogPageState extends State<BlogPage> {
                       color: Colors.black,
                       onPressed: () {},
                     ),
-                    //             TextFormField(
-                    //               keyboardType: TextInputType.text,
-                    //               controller: _searchController,
-                    //             decoration: InputDecoration(
-                    //               labelText: 'Search', disabledBorder: InputBorder.none, ),
-                    // ),
-                    IconButton(
-                      iconSize: 25,
-                      icon: Icon(Icons.settings),
-                      color: Colors.black,
-                      onPressed: () {},
+                                SizedBox(
+                                  width: 200,
+                                  child: TextFormField(
+                                    onChanged:(value) {
+                                      blogs.setSearch();
+                                      blogs.runFilter(value);
+                                    },
+                                    keyboardType: TextInputType.text,
+                                    controller: _searchController,
+                                  decoration: InputDecoration.collapsed(
+
+                                     hintText: 'Search', ),
                     ),
+                                ),
+                    // IconButton(
+                    //   iconSize: 20,
+                    //   icon: Icon(Icons.settings),
+                    //   color: Colors.black,
+                    //   onPressed: () {},
+                    // ),
                   ],
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Expanded(
+              (blogs.newBlogs.isEmpty) ?
+              Text("No Results Found",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold))
+              :Expanded(
                 child: Container(
                   // padding: EdgeInsets.all(6),
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       // shrinkWrap: true,
-                      itemCount: blogs.blogs.length,
+                      itemCount: blogs.search ? blogs.newBlogs.length : blogs.blogs.length,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
-                        return BlogWidget(blog: blogs.blogs[index]);
+                        return  BlogWidget(blog: blogs.search ? blogs.newBlogs[index]: blogs.blogs[index]);
                       }),
                 ),
               ),

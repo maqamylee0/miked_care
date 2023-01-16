@@ -9,7 +9,9 @@ class BlogProvider extends ChangeNotifier {
  late BlogService _blogService;
  late Auth _auth;
    List<Blog> blogs = [];
+   List<Blog> newBlogs = [];
    List<String> fav = [];
+   bool search = false;
 
   BlogProvider(){
      _blogService = BlogService();
@@ -22,6 +24,16 @@ class BlogProvider extends ChangeNotifier {
     blogs = await _blogService.getAllBlogs();
     notifyListeners();
   }
+  void setSearch(){
+    search = true;
+    notifyListeners();
+  }
+
+   void runFilter(String value)  {
+   newBlogs = blogs.where((element) => element.title!.toLowerCase().contains(value.toLowerCase())).toList();
+   notifyListeners();
+ }
+
 
  Future<void> addToFav(Blog blog) async {
     await _blogService.addToFav(blog.uid);
@@ -33,6 +45,7 @@ class BlogProvider extends ChangeNotifier {
       await getUserDetails();
     notifyListeners();
   }
+
 
 
   Future<void> getUserDetails() async {
