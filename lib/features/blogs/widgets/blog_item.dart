@@ -100,22 +100,22 @@ class BlogWidget extends StatelessWidget {
                             icon: Icon(Icons.share),
                             color: Colors.black,
                             onPressed: () async {
-                              final url = await Uri.parse('${blog.imageUrl}');
-                              final response = await http.get(url);
-                              final bytes = await response.bodyBytes;
-                              final temp = await getTemporaryDirectory();
-                              final path = '${temp.path}/brest5.jpeg';
-                              // File imgFile =  File(path);
-
-                              XFile? file = await XFile(path);
-                              // file.writeAsBytesSync(response.bodyBytes);
-
-                              print('path $path');
-                              // File(path).writeAsBytesSync(bytes);
-                              // Share.share('${blog.title}', subject: '${blog.content}');
-                              await Share.shareXFiles([file],text: '${blog.title}');
-                              // Files(, text: '${blog.title}');
-
+                              // final url = await Uri.parse('${blog.imageUrl}');
+                              // final response = await http.get(url);
+                              // final bytes = await response.bodyBytes;
+                              // final temp = await getTemporaryDirectory();
+                              // final path = '${temp.path}/brest5.jpeg';
+                              // // File imgFile =  File(path);
+                              //
+                              // XFile? file = await XFile(path);
+                              // // file.writeAsBytesSync(response.bodyBytes);
+                              //
+                              // print('path $path');
+                              // // File(path).writeAsBytesSync(bytes);
+                              // // Share.share('${blog.title}', subject: '${blog.content}');
+                              // await Share.shareXFiles([file],text: '${blog.title}');
+                              // // Files(, text: '${blog.title}');
+                             Share.share('${blog.title} \n ${blog.content}  ',subject: '${blog.content}');
                             },
                           ),
                           blogs.fav.contains(blog.uid) ? IconButton(
