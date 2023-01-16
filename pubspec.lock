@@ -777,6 +777,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  reading_time:
+    dependency: "direct main"
+    description:
+      name: reading_time
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   rxdart:
     dependency: transitive
     description:

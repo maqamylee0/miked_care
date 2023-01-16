@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:miked_care/features/blogs/pages/blog_detail.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:reading_time/reading_time.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 
@@ -82,7 +83,7 @@ class BlogWidget extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Text("10 mins read",
+                    Text("${readingTime(blog.content!).msg}",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 15,

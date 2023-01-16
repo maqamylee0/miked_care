@@ -65,8 +65,13 @@ class _BlogPageState extends State<BlogPage> {
                                   width: 200,
                                   child: TextFormField(
                                     onChanged:(value) {
-                                      blogs.setSearch();
-                                      blogs.runFilter(value);
+                                      if(value.isEmpty){
+                                        blogs.setSearch(false);
+                                      }else{
+                                        blogs.setSearch(true);
+                                        blogs.runFilter(value);
+                                      }
+
                                     },
                                     keyboardType: TextInputType.text,
                                     controller: _searchController,
@@ -87,22 +92,24 @@ class _BlogPageState extends State<BlogPage> {
               SizedBox(
                 height: 10,
               ),
-              (blogs.newBlogs.isEmpty) ?
+              (blogs.blogs.isEmpty) ?
               Text("No Results Found",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 27,
                       fontWeight: FontWeight.bold))
-              :Expanded(
+              :
+              Expanded(
                 child: Container(
-                  // padding: EdgeInsets.all(6),
+                    // blogs.search ? blogs.newBlogs.length :
+                    // padding: EdgeInsets.all(6),
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       // shrinkWrap: true,
-                      itemCount: blogs.search ? blogs.newBlogs.length : blogs.blogs.length,
+                      itemCount:blogs.blogs.length,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
-                        return  BlogWidget(blog: blogs.search ? blogs.newBlogs[index]: blogs.blogs[index]);
+                        return  BlogWidget(blog:  blogs.blogs[index]);
                       }),
                 ),
               ),

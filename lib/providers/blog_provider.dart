@@ -22,15 +22,19 @@ class BlogProvider extends ChangeNotifier {
 
   Future<void> getAllBlogs() async {
     blogs = await _blogService.getAllBlogs();
+    newBlogs = blogs;
     notifyListeners();
   }
-  void setSearch(){
-    search = true;
+  void setSearch(bool bool){
+    search = bool;
+    if(!search){
+      blogs = newBlogs;
+    }
     notifyListeners();
   }
 
    void runFilter(String value)  {
-   newBlogs = blogs.where((element) => element.title!.toLowerCase().contains(value.toLowerCase())).toList();
+   blogs = blogs.where((element) => element.title!.toLowerCase().contains(value.toLowerCase())).toList();
    notifyListeners();
  }
 
