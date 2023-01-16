@@ -61,6 +61,10 @@ dependencies:
   cached_network_image: ^3.2.3
   json_serializable: ^6.5.4
   json_annotation: ^4.7.0
+  share_plus: ^6.3.0
+  http: ^0.13.5
+  path_provider: ^2.0.11
+  reading_time: ^2.0.0
 
 
 dev_dependencies:
