@@ -20,7 +20,6 @@ class _BlogPageState extends State<BlogPage> {
   @override
   Widget build(BuildContext context) {
     final blogs = Provider.of<BlogProvider>(context);
-    final user = Provider.of<UserProvider>(context);
 
     return Scaffold(
       body: SafeArea(

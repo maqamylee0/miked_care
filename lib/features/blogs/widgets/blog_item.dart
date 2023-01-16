@@ -4,9 +4,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../providers/blog_provider.dart';
+import '../../../providers/user_provider.dart';
 import '../models/blog.dart';
 
 class BlogWidget extends StatelessWidget {
@@ -18,6 +21,9 @@ class BlogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final blogs = Provider.of<BlogProvider>(context);
+    final user = Provider.of<UserProvider>(context);
+
     return Container(
       // padding: EdgeInsets.all(10),
       child: Column(
@@ -102,12 +108,20 @@ class BlogWidget extends StatelessWidget {
 
                           },
                         ),
-                        IconButton(
+                        blogs.fav.contains(blog.uid) ? IconButton(
+                          iconSize: 20,
+                          icon: Icon(Icons.favorite),
+                          color: Colors.lightBlueAccent,
+                          onPressed: () {
+                            blogs.removeFromFav(blog);
+
+                          },
+                        ):IconButton(
                           iconSize: 20,
                           icon: Icon(Icons.favorite_outline),
                           color: Colors.lightBlueAccent,
                           onPressed: () {
-
+                           blogs.addToFav(blog);
                           },
                         ),
                       ],
