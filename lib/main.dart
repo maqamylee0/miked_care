@@ -11,6 +11,7 @@ import 'package:miked_care/features/auth/pages/reset_password_page.dart';
 import 'package:miked_care/features/auth/pages/sign_up_page.dart';
 import 'package:miked_care/features/auth/pages/verify_success_page.dart';
 import 'package:miked_care/features/auth/widgets/verify_code.dart';
+import 'package:miked_care/features/blogs/pages/blog_detail.dart';
 import 'package:miked_care/features/homepage/pages/homepage.dart';
 import 'package:miked_care/features/profile/pages/about_us.dart';
 import 'package:miked_care/features/profile/pages/edit_profile.dart';
