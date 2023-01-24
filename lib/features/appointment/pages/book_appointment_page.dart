@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/Utils/image_assets_constants.dart';
@@ -7,6 +8,8 @@ import 'package:miked_care/services/therapist_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/appointment_provider.dart';
+import '../../../providers/message_provider.dart';
+import '../../../providers/user_provider.dart';
 import '../widgets/review_list.dart';
 
 class BookAppointment extends StatefulWidget {
@@ -17,6 +20,8 @@ class BookAppointment extends StatefulWidget {
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
+  CollectionReference chats = FirebaseFirestore.instance.collection('chats');
+
 
   @override
   void initState(){
@@ -38,6 +43,8 @@ class _BookAppointmentState extends State<BookAppointment> {
     final reviews = Provider.of<AppointmentProvider>(context);
     // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+    final messageProvider = Provider.of<MessageProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
 
 
     return Scaffold(
@@ -122,9 +129,38 @@ class _BookAppointmentState extends State<BookAppointment> {
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           ),
 
-                          onPressed: () {},
+                          onPressed: () async {
+                            await chats.where("users" , isEqualTo: { 'user1': userProvider.user.uid,'user2': widget.therapistInfo.therapistUid})
+                                .limit(1)
+                                .get()
+                                .then(
+                                    (QuerySnapshot querysnapshot) {
+                                      if(querysnapshot.docs.isNotEmpty ){
+                                        // print("hiiiiiiii "+querysnapshot.docs.single.id);
+
+                                        messageProvider.setchatDocId(querysnapshot.docs.single.id);
+                                      }else{
+                                        chats.add({
+                                          'users': {
+                                            'user1':userProvider.user.uid,
+                                            'user2':widget.therapistInfo.therapistUid,
+                                          }
+                                        }).then((value) {
+                                          // print("hiiiiiiii "+ value.id);
+
+                                          messageProvider.setchatDocId(value.id);
+                                        });
+
+
+                                      }
+
+                                    }
+
+                            );
+                            Navigator.pushNamed(context, 'chat');
+                          },
                           child: Text(
-                            "View More",
+                            "Chat Now",
                             style: TextStyle(
 
                                 fontSize: 14),

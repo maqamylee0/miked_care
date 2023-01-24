@@ -13,15 +13,6 @@ class Review{
   factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReviewToJson(this);
-  // factory Review.fromJson(Map<String, dynamic> map) {
-  //   return Review(
-  //     reviewId: map['reviewId'],
-  //     userId: map['userId'],
-  //     message: map['message'],
-  //     date: map['date'],
-  //     rating: map['rating'],
-  //
-  //   );
-  // }
+
 
 }

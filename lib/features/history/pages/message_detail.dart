@@ -8,6 +8,7 @@ import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_6.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
 
+import '../../../providers/message_provider.dart';
 import '../../../providers/user_provider.dart';
 import '../models/message.dart';
 
@@ -21,18 +22,22 @@ class MessageDetailPage extends StatefulWidget {
 class _MessageDetailPageState extends State<MessageDetailPage> {
   CollectionReference chats = FirebaseFirestore.instance.collection('chats');
 
-  String chatDocId = "0G0QwONEzqDSUJoV2TCz";
+  // String chatDocId = "0G0QwONEzqDSUJoV2TCz";
   TextEditingController textController = TextEditingController();
   String therapistName = "Edidiong";
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context);
+    final messageProvider = Provider.of<MessageProvider>(context);
 
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
+      body:( messageProvider.chatDocId == "") ?  Center(
+        child: Text("Loading Chat"),
+      ):
+      StreamBuilder<QuerySnapshot>(
         stream: chats
-            .doc(chatDocId)
+            .doc(messageProvider.chatDocId)
             .collection("messages")
             .orderBy("createdOn", descending: true)
             .snapshots(),
@@ -148,7 +153,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                             CupertinoButton(
                                 child: Icon(Icons.send_sharp),
                                 onPressed: () {
-                                  sendMessage(textController.text,user.user.uid);
+                                  sendMessage(textController.text,user.user.uid,messageProvider.chatDocId);
                                 })
                           ],
                         )
@@ -164,7 +169,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
     );
   }
 
-  void sendMessage(String msg,userId) {
+  void sendMessage(String msg,userId,chatDocId) {
     if (msg == '') return;
         chats
         .doc(chatDocId).collection('messages').add({
