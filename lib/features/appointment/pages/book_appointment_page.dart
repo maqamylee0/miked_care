@@ -142,9 +142,14 @@ class _BookAppointmentState extends State<BookAppointment> {
                                       }else{
                                         chats.add({
                                           'users': {
-                                            'user1':userProvider.user.uid,
-                                            'user2':widget.therapistInfo.therapistUid,
+                                            '${userProvider.user.uid}':null,
+                                            '${widget.therapistInfo.therapistUid}':null,
+                                          },
+                                          'names': {
+                                            '${userProvider.user.uid}':userProvider.user.name,
+                                            '${widget.therapistInfo.therapistUid}':widget.therapistInfo.name,
                                           }
+
                                         }).then((value) {
                                           // print("hiiiiiiii "+ value.id);
 

@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/features/history/pages/message_detail.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/message_provider.dart';
 
 class HistoryCard extends StatefulWidget {
-  const HistoryCard({Key? key}) : super(key: key);
-
+  const HistoryCard(  {Key? key,required this.chatMessage }) : super(key: key);
+ final chatMessage;
   @override
   State<HistoryCard> createState() => _HistoryCardState();
 }
@@ -13,6 +16,7 @@ class _HistoryCardState extends State<HistoryCard> {
 
   @override
   Widget build(BuildContext context) {
+
     var totalWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: (){
@@ -47,7 +51,7 @@ class _HistoryCardState extends State<HistoryCard> {
 
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(4,4,4,4),
-                                    child: Text("Wendy Watson",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
+                                    child: Text("me",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
                                   ),
 
 

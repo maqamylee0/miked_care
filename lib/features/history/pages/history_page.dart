@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
+import '../../../providers/message_provider.dart';
 import '../widgets/history_card_widget.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -81,17 +83,19 @@ class history_card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final messageProvider = Provider.of<MessageProvider>(context);
+
     return Container(
       // padding: EdgeInsets.all(6),
       child: ListView.builder(
 
           physics: ScrollPhysics(),
           // shrinkWrap: true,
-          itemCount:10,
+          itemCount:messageProvider.chats.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context,index){
 
-            return HistoryCard();
+            return HistoryCard( chatMessage :messageProvider.chats.elementAt(index));
           }),
     );
   }
