@@ -1,12 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/Utils/image_assets_constants.dart';
 import 'package:miked_care/features/appointment/models/therapist.dart';
 import 'package:miked_care/features/appointment/widgets/dashboard_button.dart';
+import 'package:miked_care/features/history/pages/message_detail.dart';
 import 'package:miked_care/services/therapist_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/appointment_provider.dart';
+import '../../../providers/message_provider.dart';
+import '../../../providers/user_provider.dart';
 import '../widgets/review_list.dart';
 
 class BookAppointment extends StatefulWidget {
@@ -17,6 +21,8 @@ class BookAppointment extends StatefulWidget {
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
+  CollectionReference chats = FirebaseFirestore.instance.collection('chats');
+
 
   @override
   void initState(){
@@ -38,6 +44,8 @@ class _BookAppointmentState extends State<BookAppointment> {
     final reviews = Provider.of<AppointmentProvider>(context);
     // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+    final messageProvider = Provider.of<MessageProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
 
 
     return Scaffold(
@@ -122,9 +130,44 @@ class _BookAppointmentState extends State<BookAppointment> {
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           ),
 
-                          onPressed: () {},
+                          onPressed: () async {
+                            await chats.where("users" , isEqualTo: { '${userProvider.user.uid}': null,'${widget.therapistInfo.therapistUid}':null })
+                                .limit(1)
+                                .get()
+                                .then(
+                                    (QuerySnapshot querysnapshot) {
+                                      if(querysnapshot.docs.isNotEmpty ){
+                                        // print("hiiiiiiii "+querysnapshot.docs.single.id);
+
+                                        messageProvider.setchatDocId(querysnapshot.docs.single.id);
+                                      }else{
+                                        chats.add({
+                                          'users': {
+                                            '${userProvider.user.uid}':null,
+                                            '${widget.therapistInfo.therapistUid}':null,
+                                          },
+                                          'names': {
+                                            '${userProvider.user.uid}':userProvider.user.name,
+                                            '${widget.therapistInfo.therapistUid}':widget.therapistInfo.name,
+                                          }
+
+                                        }).then((value) {
+                                          // print("hiiiiiiii "+ value.id);
+
+                                          messageProvider.setchatDocId(value.id);
+                                        });
+
+
+                                      }
+
+                                    }
+
+                            );
+                            Navigator.push(context,MaterialPageRoute(builder:
+                                (context)=>MessageDetailPage(therapistUid:widget.therapistInfo.therapistUid)));
+                          },
                           child: Text(
-                            "View More",
+                            "Chat Now",
                             style: TextStyle(
 
                                 fontSize: 14),
