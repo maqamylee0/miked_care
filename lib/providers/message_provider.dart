@@ -5,7 +5,7 @@ class MessageProvider extends ChangeNotifier{
   String chatDocId = '';
   String therapistName = "";
   late MessageService messageService;
-  List chats = [];
+  List<Map<String, dynamic>> chats = [];
 
   MessageProvider(){
     messageService = MessageService();

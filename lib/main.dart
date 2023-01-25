@@ -77,7 +77,6 @@ class MyApp extends StatelessWidget {
         'make_payment':(context) => const MakePaymentPage(),
         'sessions':(context) => const AppointmentPage(),
         'profile':(context) => const ProfilePage(),
-        'chat':(context) => const MessageDetailPage(),
 
       },
       home: auth.currentUser != null ? DashboardPage():WelcomeSlider(),

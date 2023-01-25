@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:miked_care/Utils/image_assets_constants.dart';
 import 'package:miked_care/features/appointment/models/therapist.dart';
 import 'package:miked_care/features/appointment/widgets/dashboard_button.dart';
+import 'package:miked_care/features/history/pages/message_detail.dart';
 import 'package:miked_care/services/therapist_service.dart';
 import 'package:provider/provider.dart';
 
@@ -130,7 +131,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                           ),
 
                           onPressed: () async {
-                            await chats.where("users" , isEqualTo: { 'user1': userProvider.user.uid,'user2': widget.therapistInfo.therapistUid})
+                            await chats.where("users" , isEqualTo: { '${userProvider.user.uid}': null,'${widget.therapistInfo.therapistUid}':null })
                                 .limit(1)
                                 .get()
                                 .then(
@@ -162,7 +163,8 @@ class _BookAppointmentState extends State<BookAppointment> {
                                     }
 
                             );
-                            Navigator.pushNamed(context, 'chat');
+                            Navigator.push(context,MaterialPageRoute(builder:
+                                (context)=>MessageDetailPage(therapistUid:widget.therapistInfo.therapistUid)));
                           },
                           child: Text(
                             "Chat Now",

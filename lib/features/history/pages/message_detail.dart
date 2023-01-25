@@ -13,8 +13,8 @@ import '../../../providers/user_provider.dart';
 import '../models/message.dart';
 
 class MessageDetailPage extends StatefulWidget {
-  const MessageDetailPage({Key? key}) : super(key: key);
-
+  const MessageDetailPage({Key? key,  required this.therapistUid, }) : super(key: key);
+  final String? therapistUid;
   @override
   State<MessageDetailPage> createState() => _MessageDetailPageState();
 }
@@ -176,6 +176,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
       'createdOn': FieldValue.serverTimestamp(),
       'senderId': userId,
       'therapistName':therapistName,
+      "therapistUid":widget.therapistUid,
       'text': msg
     }).then((value) {
       textController.text = '';

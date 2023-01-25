@@ -1,13 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/features/history/pages/message_detail.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/message_provider.dart';
+import '../../../providers/user_provider.dart';
 
 class HistoryCard extends StatefulWidget {
   const HistoryCard(  {Key? key,required this.chatMessage }) : super(key: key);
- final chatMessage;
+ final  Map<String, dynamic>chatMessage;
   @override
   State<HistoryCard> createState() => _HistoryCardState();
 }
@@ -16,15 +18,34 @@ class _HistoryCardState extends State<HistoryCard> {
 
   @override
   Widget build(BuildContext context) {
+    // print("hiii ${widget.chatMessage['therapistName']}chatMessage");
+    CollectionReference chats = FirebaseFirestore.instance.collection('chats');
 
+    final messageProvider = Provider.of<MessageProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     var totalWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: (){
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) =>  MessageDetailPage())
+      onTap: () async {
+        await chats.where("users" , isEqualTo: { '${userProvider.user.uid}': null,'${widget.chatMessage['therapistUid']}':null })
+            .limit(1)
+            .get()
+            .then(
+                (QuerySnapshot querysnapshot) {
+              if(querysnapshot.docs.isNotEmpty ){
+                // print("hiiiiiiii "+querysnapshot.docs.single.id);
 
-        );      },
+                messageProvider.setchatDocId(querysnapshot.docs.single.id);
+              }else{
+                print("id1:${userProvider.user.uid} id2:${widget.chatMessage['therapistUid']}");
+              }
+
+            }
+
+        );
+        Navigator.push(context,
+            MaterialPageRoute(builder:
+        (context)=>MessageDetailPage(therapistUid: widget.chatMessage['therapistUid'])));
+             },
       child: Container(
         child:
             Column(
@@ -51,13 +72,13 @@ class _HistoryCardState extends State<HistoryCard> {
 
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(4,4,4,4),
-                                    child: Text("me",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
+                                    child: Text("${widget.chatMessage['therapistName']}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
                                   ),
 
 
                               SizedBox(width: 5,),
 
-                                  Text('07:30 pm',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17))
+                                  Text('${widget.chatMessage['createdOn']}',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17))
 
 
                             ],
@@ -67,7 +88,7 @@ class _HistoryCardState extends State<HistoryCard> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
 
-                              Text("Thanks for your time"),
+                              Text("${widget.chatMessage['text']}"),
 
 
                               SizedBox(width: 10,),

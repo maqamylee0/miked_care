@@ -87,15 +87,16 @@ class history_card extends StatelessWidget {
 
     return Container(
       // padding: EdgeInsets.all(6),
-      child: ListView.builder(
+      child:
+      ListView.builder(
 
           physics: ScrollPhysics(),
           // shrinkWrap: true,
           itemCount:messageProvider.chats.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context,index){
-
-            return HistoryCard( chatMessage :messageProvider.chats.elementAt(index));
+           print("index ${messageProvider.chats.length}");
+            return HistoryCard( chatMessage :messageProvider.chats[index]);
           }),
     );
   }

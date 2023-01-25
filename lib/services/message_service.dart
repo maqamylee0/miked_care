@@ -2,25 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 import '../features/history/models/message.dart';
 
 class MessageService {
   var currentUser = FirebaseAuth.instance.currentUser?.uid;
   CollectionReference chats = FirebaseFirestore.instance.collection('chats');
-   Map<String, dynamic> messages ={};
-   List chatMessages = [];
-//   FirebaseFirestore firebase = FirebaseFirestore.instance;
-//   List messages = [];
-//    void messages(){
-//      messages = firebase.collection("chats")
-//          .doc("0G0QwONEzqDSUJoV2TCz")
-//          .collection("messages")
-//          .orderBy("createdOn",descending: true)
-//          .snapshots();
-//    }
-  Future<List> getAllChats() async {
+  Map<String, dynamic> messages = {};
+  List<Map<String, dynamic>> chatMessages = [];
 
+  Future<List<Map<String, dynamic>>> getAllChats() async {
     var chatDocuments = [];
     chats
         .where('users.$currentUser', isNull: true)
@@ -33,10 +25,10 @@ class MessageService {
 
         return {'docid': doc.id, 'name': names.values.first};
       }).toList();
-  print("wow ${chatDocuments.length}");
+      // print("wow ${chatDocuments.length}");
       chatDocuments.forEach((doc) {
-        print("heiii"+doc['docid']);
-        print("hieii"+doc['name']);
+        // print("heiii" + doc['docid']);
+        // print("hieii" + doc['name']);
 
         FirebaseFirestore.instance
             .collection('chats/${doc['docid']}/messages')
@@ -45,19 +37,25 @@ class MessageService {
             .snapshots()
             .listen((QuerySnapshot snapshot) {
           if (snapshot.docs.isNotEmpty) {
-            print('geee ${snapshot.docs.length}');
-            messages[doc['name']] = {
+            // print('geee ${snapshot.docs.length}');
+            Timestamp t = snapshot.docs.first['createdOn'];
+            DateTime ti = t.toDate();
+            var time = DateFormat.jm().format(ti);
+            // String time = ' ${ti.add_jm()}';
+            messages = {
               'text': snapshot.docs.first['text'],
-              'createdOn': snapshot.docs.first['createdOn'],
+              'createdOn': time,
               'therapistName': doc['name'],
-              // 'therapistUid': snapshot.docs.first['senderId']
+              'therapistUid': snapshot.docs.first['therapistUid']
             };
-            chatMessages.add(messages.values);
           }
+          chatMessages.add(messages);
         });
       });
     });
-    print('loveeeeeeeeee ${chatMessages.length}');
+    // print('loveeeeeeeeee ${chatMessages}');
+    // print('giiii $messages');
+
     return chatMessages;
   }
-  }
+}
