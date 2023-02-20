@@ -6,7 +6,11 @@ import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
 import 'package:flutter_credit_card/custom_card_type_icon.dart';
 import 'package:flutter_credit_card/glassmorphism_config.dart';
+import 'package:miked_care/features/appointment/models/payment.dart';
+import 'package:miked_care/providers/appointment_provider.dart';
+import 'package:provider/provider.dart';
 
+import '../models/appointment.dart';
 import '../widgets/dashboard_button.dart';
 
 class MakePaymentPage extends StatefulWidget {
@@ -27,6 +31,8 @@ class _MakePaymentPageState extends State<MakePaymentPage> {
   bool useGlassMorphism = false;
   bool useBackgroundImage = false;
   OutlineInputBorder? border;
+  Payment payment = Payment();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -39,12 +45,23 @@ class _MakePaymentPageState extends State<MakePaymentPage> {
   setSelectedRadioTile(int val) {
     setState(() {
       selectedRadioTile = val;
-
     });
+  }
+ // appointmentProvider.getAppointmentId
+  void moveAppointment(appointmentProvider){
+     // appointmentProvider.getAppointmentId.toString();
+     payment.appointmentId =  appointmentProvider.getAppointmentId.toString();
+     payment.time = TimeOfDay.now().toString();
+     payment.date = DateTime.now().toString();
+     payment.amount = "\$10.00";
+     appointmentProvider.makePayment(payment);
+    Navigator.pushNamed(context, 'home');
   }
 
   @override
   Widget build(BuildContext context) {
+    final appointmentProvider = Provider.of<AppointmentProvider>(context);
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -171,7 +188,20 @@ class _MakePaymentPageState extends State<MakePaymentPage> {
                   padding: const EdgeInsets.all(12.0),
                   child: SizedBox(
                       height: 55,
-                      child: LargeButton(title: "Start Therapy", path: 'home',)),
+                      child:
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size.fromHeight(
+                                55), // fromHeight use double.infinity as width and 40 is the height
+                          ),
+                          onPressed: () {
+                            moveAppointment(appointmentProvider);
+                          },
+                          child:  Text(
+                            'Start Therapy',
+                            style: TextStyle(color: Colors.white,fontSize: 24),
+                          ))),
+                      // LargeButton(title: "Start Therapy",callback: moveAppointment)),
                 ),
                 SizedBox(height: 20,),
                 Align(

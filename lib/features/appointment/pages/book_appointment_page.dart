@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miked_care/Utils/image_assets_constants.dart';
 import 'package:miked_care/features/appointment/models/therapist.dart';
+import 'package:miked_care/features/appointment/pages/appoinment_page.dart';
+import 'package:miked_care/features/appointment/pages/appointment_form_page.dart';
 import 'package:miked_care/features/appointment/widgets/dashboard_button.dart';
 import 'package:miked_care/features/history/pages/message_detail.dart';
 import 'package:miked_care/services/therapist_service.dart';
@@ -36,6 +38,14 @@ class _BookAppointmentState extends State<BookAppointment> {
     super.dispose();
 
   }
+    move(){
+     Navigator.push(
+       context,
+       MaterialPageRoute(builder: (context) =>  AppointmentFormPage(therapist:widget.therapistInfo)),
+     );
+   }
+   // =>Navigator.pushNamed(context, 'AppointmentForm');
+
 
   @override
   Widget build(BuildContext context) {
@@ -323,7 +333,7 @@ class _BookAppointmentState extends State<BookAppointment> {
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: LargeButton(title: "Book appointment",path:"AppointmentForm"),
+                  child: LargeButton(title: "Book appointment", callback:move),
                 )
               ],
             ),

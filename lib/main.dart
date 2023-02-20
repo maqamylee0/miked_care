@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
       )),
       routes: {
         'home': (context) => const DashboardPage(),
-        'AppointmentForm': (context) => const AppointmentFormPage(),
+        'AppointmentForm': (context) =>  AppointmentFormPage(),
         'make_payment':(context) => const MakePaymentPage(),
         'sessions':(context) => const AppointmentPage(),
         'profile':(context) => const ProfilePage(),

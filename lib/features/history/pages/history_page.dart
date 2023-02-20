@@ -95,7 +95,7 @@ class history_card extends StatelessWidget {
           itemCount:messageProvider.chats.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context,index){
-           print("index ${messageProvider.chats.length}");
+           // print("index ${messageProvider.chats.length}");
             return HistoryCard( chatMessage :messageProvider.chats[index]);
           }),
     );

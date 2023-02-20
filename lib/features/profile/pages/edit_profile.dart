@@ -11,6 +11,8 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+
+  void moveProfile()=> Navigator.pushNamed(context, 'profile');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,7 +147,7 @@ class _EditProfileState extends State<EditProfile> {
                 SizedBox(height: 50,),
                 SizedBox(
                   height: 50,
-                  child: LargeButton(title:"Save", path: 'profile',),
+                  child: LargeButton(title:"Save", callback:moveProfile ),
                 )
               ],
             ),
