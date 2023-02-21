@@ -1,9 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:miked_care/features/appointment/models/appointment.dart';
 import 'package:miked_care/features/appointment/widgets/dashboard_button.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/appointment_provider.dart';
+import '../../../providers/user_provider.dart';
+import '../models/therapist.dart';
 
 class AppointmentFormPage extends StatefulWidget {
-  const AppointmentFormPage({Key? key}) : super(key: key);
+  const AppointmentFormPage({Key? key,  this.therapist}) : super(key: key);
+  final Therapist? therapist;
 
   @override
   State<AppointmentFormPage> createState() => _AppointmentFormPageState();
@@ -14,11 +22,13 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
   late int selectedRadio;
   late int selectedRadioTile2;
   late int selectedRadio2;
+  Appointment appointment = Appointment();
 
   TimeOfDay time = TimeOfDay(hour: 8, minute: 00);
   DateTime date = DateTime(2023);
 
-
+   List<String> kind = ['Individual','Couple','Family'];
+   List<String> type = ['Flexible','Structure'];
 
   @override
   void initState() {
@@ -41,8 +51,33 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
     });
   }
 
+    makeAppointment(appointmentProvider){
+     appointment.kind = kind[selectedRadioTile-1];
+     appointment.type = type[selectedRadioTile2-1];
+     // appointment.userId =
+     appointment.status = 'confirmed';
+     appointment.therapistId = widget.therapist?.therapistUid;
+     appointment.therapist = widget.therapist?.name;
+     try{
+        appointmentProvider.makeAppointment(appointment);
+        // print('hiiiiiiiiiiiiiiiii ${appointment.kind}');
+        // print('hiiiiiiiiiiiiiiiii ${appointment.type}');
+        // print('hiiiiiiiiiiiiiiiii ${appointment.date}');
+        // print('hiiiiiiiiiiiiiiiii ${appointment.time}');
+
+       Navigator.pushNamed(context, 'make_payment',);
+
+     }catch(e){
+       print('e');
+     }
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final appointmentProvider = Provider.of<AppointmentProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
+      appointment.userId = userProvider.user.uid;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(20),
@@ -262,15 +297,22 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
                 endIndent: 10,
                 color: Colors.grey,
               ),
-
-
-
-
-
               SizedBox(height: 20,),
               SizedBox(
                 height: 55,
-                  child: LargeButton(title: "Continue", path: 'make_payment',))
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size.fromHeight(
+                            55), // fromHeight use double.infinity as width and 40 is the height
+                      ),
+                      onPressed: () {
+                        makeAppointment(appointmentProvider);
+                      },
+                      child:  Text(
+                        'Continue',
+                        style: TextStyle(color: Colors.white,fontSize: 24),
+                      )))
+                  // LargeButton(title: "Continue", callback: makeAppointment(appointmentProvider)))
             ],
           ),
         ),
@@ -285,6 +327,8 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
     ).then((value) =>
         setState((){
       date  = value!  ;
+      appointment.date = value!.toString();
+
     }
     ));
   }
@@ -292,6 +336,15 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
     showTimePicker(context: context, initialTime: TimeOfDay.now()).then((value) =>
         setState((){
           time  = value! ;
+          date = DateTime(value!.hour,value!.minute);
+          String min;
+          if(value!.minute < 10 ) {
+          min = '0${value!.minute}';
+          }
+          else{
+         min = value!.minute.toString();
+          }
+          appointment.time = "${value!.hour} : ${min} ${time.period.toString().split('.')[1].toUpperCase()}" ;
         }
         ));
 

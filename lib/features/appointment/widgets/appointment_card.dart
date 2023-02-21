@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../providers/appointment_provider.dart';
+import '../models/appointment.dart';
 import 'appointment_button_widget.dart';
 
 class AppointmentCard extends StatefulWidget {
-  const AppointmentCard({Key? key}) : super(key: key);
-
+  const AppointmentCard({Key? key, required this.appointment,}) : super(key: key);
+  final Appointment appointment;
   @override
   State<AppointmentCard> createState() => _AppointmentCardState();
 }
@@ -14,6 +17,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
   @override
   Widget build(BuildContext context) {
     var totalWidth = MediaQuery.of(context).size.width;
+    var datetime = DateTime.parse(widget.appointment.date!);
 
     return Container(
       padding: EdgeInsets.all(5),
@@ -37,11 +41,11 @@ class _AppointmentCardState extends State<AppointmentCard> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Text('Dr.Edidiong Ishola'),
+                    child: Text('${widget.appointment.therapist}'),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Text('confirmed',style: TextStyle(color: Colors.grey),),
+                    child: Text('${widget.appointment.status}',style: TextStyle(color: Colors.grey),),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +53,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                       Column(
                         children: [
                           Icon(Icons.calendar_month_rounded),
-                          Text("12/02/2022")
+                          Text("${datetime.year}/${datetime.month}/${datetime.day}")
                         ],
                       ),
 
@@ -57,7 +61,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                       Column(
                         children: [
                           Icon(Icons.timer),
-                          Text('08:00 pm')
+                          Text('${widget.appointment.time}')
 
                         ],
                       )

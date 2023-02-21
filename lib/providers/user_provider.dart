@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:miked_care/Utils/image_assets_constants.dart';
 import 'package:miked_care/features/auth/models/user.dart';
+import 'package:miked_care/services/appointment_service.dart';
 
+import '../features/appointment/models/appointment.dart';
 import '../services/auth.dart';
 
 class UserProvider extends ChangeNotifier{
@@ -13,6 +15,8 @@ class UserProvider extends ChangeNotifier{
      String username ='';
      String photoUrl='';
      var _auth ;
+      AppointmentService appointmentService= AppointmentService();
+      List appointments =[];
 
     UserProvider(){
       _auth = Auth();
@@ -31,7 +35,15 @@ class UserProvider extends ChangeNotifier{
       print(isLoaded);
     }
     notifyListeners();
+    // getAppointments(user.uid);
   }
+     // Future<List> getAppointments(userId) async {
+     //   appointments = await appointmentService.getAppointments(userId);
+     //   // username = user.name!;
+     //   notifyListeners();
+     //   print('apppppppppppppppppppppppp ${appointments.length}');
+     //   return appointments;
+     // }
 
 
 }

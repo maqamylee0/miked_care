@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:miked_care/features/appointment/models/therapist.dart';
 
 class LargeButton extends StatefulWidget {
-  const LargeButton({Key? key, required this.title, required this.path}) : super(key: key);
+  const LargeButton({Key? key, required this.title, this.callback}) : super(key: key);
   final String title;
-  final String path;
+  final VoidCallback? callback;
+  // final String? info;
   @override
   State<LargeButton> createState() => _LargeButtonState();
 }
@@ -18,7 +20,7 @@ class _LargeButtonState extends State<LargeButton> {
               55), // fromHeight use double.infinity as width and 40 is the height
         ),
         onPressed: () {
-          Navigator.pushNamed(context, '${widget.path}');
+          widget.callback!();
         },
         child:  Text(
           '${widget.title}',

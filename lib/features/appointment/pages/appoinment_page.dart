@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:miked_care/features/appointment/widgets/appointment_card.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/appointment_provider.dart';
+import '../../../providers/user_provider.dart';
+import '../models/appointment.dart';
 
 class AppointmentPage extends StatefulWidget {
   const AppointmentPage({super.key});
@@ -23,6 +28,7 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
   @override
   Widget build(BuildContext context) {
     // TabController tabController = TabController(length: 3, vsync: this);
+    // final appointmentProvider = Provider.of<AppointmentProvider>(context);
 
     return Scaffold(
       body:
@@ -79,70 +85,115 @@ class _AppointmentPageState extends State<AppointmentPage>with TickerProviderSta
 }
 
 class CancelledView extends StatelessWidget {
-  const CancelledView({
+   CancelledView({
     Key? key,
   }) : super(key: key);
+   List appointments =[];
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.all(6),
-      child: ListView.builder(
+   Widget build(BuildContext context)  {
+    final appointmentProvider = Provider.of<AppointmentProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
+    Stream<List> getAppointements () async* {
+       appointments = await  appointmentProvider.getAppointments(userProvider.user.uid!) ;
 
-          physics: ScrollPhysics(),
-          // shrinkWrap: true,
-          itemCount:3,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context,index){
+     yield appointments;
+    }
+    // List<dynamic> appointments = await appointmentProvider.getAppointments(userProvider.user.uid!);
+    return StreamBuilder<Object>(
+      stream: getAppointements(),
+      builder: (context, snapshot) {
+        return  snapshot.hasData ? Container(
+          // padding: EdgeInsets.all(6),
+          child: ListView.builder(
 
-            return AppointmentCard();
-          }),
+              physics: ScrollPhysics(),
+              // shrinkWrap: true,
+              itemCount:snapshot.hasData ? appointments.length : 0,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context,index){
+
+                return AppointmentCard(appointment: appointments[index],);
+              }),
+        ):Container();
+      }
     );
   }
 }
 
 class FinishedView extends StatelessWidget {
-  const FinishedView({
+   FinishedView({
     Key? key,
   }) : super(key: key);
+   List appointments  =[];
+
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.all(6),
-      child: ListView.builder(
+    final userProvider = Provider.of<UserProvider>(context);
+    final appointmentProvider = Provider.of<AppointmentProvider>(context);
+    // List appointments = appointmentProvider.appointments;
+    Stream<List> getAppointements () async* {
+      appointments = await  appointmentProvider.getAppointments(userProvider.user.uid!) ;
 
-          physics: ScrollPhysics(),
-          // shrinkWrap: true,
-          itemCount:10,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context,index){
+      yield appointments;
+    }
+    return StreamBuilder<Object>(
+      stream: getAppointements(),
+      builder: (context, snapshot) {
+        return snapshot.hasData ? Container(
+          // padding: EdgeInsets.all(6),
+          child: ListView.builder(
 
-            return AppointmentCard();
-          }),
+              physics: ScrollPhysics(),
+              // shrinkWrap: true,
+              itemCount:snapshot.hasData ? appointments.length : 0,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context,index){
+
+                return AppointmentCard(appointment: appointments[index]);
+              }),
+        ):Container();
+      }
     );
   }
 }
 
 class UpcomingView extends StatelessWidget {
-  const UpcomingView({
+   UpcomingView({
     Key? key,
   }) : super(key: key);
+   List appointments =[];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.all(6),
-      child: ListView.builder(
+    final appointmentProvider = Provider.of<AppointmentProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
 
-          physics: ScrollPhysics(),
-          // shrinkWrap: true,
-          itemCount:10,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context,index){
+    Stream<List> getAppointements () async* {
+      appointments = await  appointmentProvider.getAppointments(userProvider.user.uid!) ;
 
-            return AppointmentCard();
-          }),
+      yield appointments;
+    }
+    return StreamBuilder<Object>(
+      stream: getAppointements(),
+      builder: (context, snapshot) {
+        return snapshot.hasData ? Container(
+          // padding: EdgeInsets.all(6),
+          child: ListView.builder(
+
+                  physics: ScrollPhysics(),
+                  // shrinkWrap: true,
+                  itemCount:snapshot.hasData ? appointments.length : 0,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context,index){
+
+                    return AppointmentCard(appointment: appointments[index]);
+                  })
+        ):Container();
+      }
     );
+        }
+
+
   }
-}
