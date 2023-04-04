@@ -27,22 +27,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final therapists = Provider.of<AppointmentProvider>(context);
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Container(
-            padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 40,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Consumer<UserProvider>(
                         builder: (BuildContext context, value, Widget? child) {
                           return (value.isLoaded == true)
-                              ? Text("Hello, ${value.username}",
+                              ? Text("Hello, ${value.username.split(" ")[1]}",
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold))
@@ -52,28 +52,34 @@ class _HomePageState extends State<HomePage> {
                                       fontWeight: FontWeight.bold));
                         },
                       ),
-                      Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Consumer<UserProvider>(
-                            builder:
-                                (BuildContext context, value, Widget? child) {
-                              return (value.photonull == true)
-                                  ? CircularAvator(
-                                      image_path: ImageAssetConstants.account)
-                                  : CachedImage(
-                                      image_path: value.photoUrl);
-                            },
-                          ),
-                          Positioned(
-                              left: 40,
-                              bottom: -10,
-                              child: Icon(
-                                Icons.circle_notifications_rounded,
-                                color: Colors.grey,
-                                size: 40,
-                              ))
-                        ],
+                      SizedBox(
+                        height: 70,width: 70,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Consumer<UserProvider>(
+                              builder:
+                                  (BuildContext context, value, Widget? child) {
+                                return (value.photonull == true)
+                                    ? SizedBox(width: 50,height: 50,
+                                      child: CircularAvator(
+                                          image_path: ImageAssetConstants.account),
+                                    )
+                                    : Image.asset(value.photoUrl);
+                                // CachedImage(
+                                //         image_path: value.photoUrl);
+                              },
+                            ),
+                            Positioned(
+                                left: 40,
+                                bottom: -10,
+                                child: Icon(
+                                  Icons.circle_notifications_rounded,
+                                  color: Colors.grey,
+                                  size: 40,
+                                ))
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -81,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                     height: 20,
                   ),
                 Container(
-                  height: 150,
+                  height: 130,
                   // padding: EdgeInsets.all(6),
                   child: ListView.builder(
 
@@ -100,10 +106,10 @@ class _HomePageState extends State<HomePage> {
 
 
                   SizedBox(
-                    height: 8,
+                    height: 15,
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 4, 4, 4),
+                    padding: const EdgeInsets.fromLTRB(16, 4, 4, 4),
                     child: Text(
                       "My Progress : 0 % complete",
                       style: TextStyle(
@@ -111,11 +117,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-
+                 SizedBox(height: 10,),
                   LinearPercentIndicator(
                     // width: MediaQuery.of(context).size.width*0.35,
                     animation: true,
-                    lineHeight: 13.0,
+                    lineHeight: 11.0,
 
                     animationDuration: 2500,
                     percent: 0.8,
@@ -133,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
+                      padding: const EdgeInsets.fromLTRB(10, 0, 4, 0),
                       child: TextButton(
                         onPressed: () {},
                         child: Text(
@@ -146,25 +152,27 @@ class _HomePageState extends State<HomePage> {
                       )),
                   // SizedBox(height: 8,),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
+                    padding: const EdgeInsets.fromLTRB(12, 0, 4, 0),
                     child: Text(
                       "Categories",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Container(
+                    padding: EdgeInsets.all(15),
+                    color: Colors.white,
                     height: MediaQuery.of(context).size.height * 0.39,
                     child: GridView(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                                childAspectRatio: (1 / .8),
+                                childAspectRatio: (1 / .75),
                                 crossAxisCount: 2,
-                                crossAxisSpacing: 30,
-                                mainAxisSpacing: 30),
+                                crossAxisSpacing: 20,
+                                mainAxisSpacing: 20),
                         children: const [
                           IconCard(
                               pathToIcon: 'assets/icons/postpartum.svg',

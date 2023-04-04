@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_6.dart';
+import 'package:miked_care/features/history/pages/video_call.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 import '../../../providers/message_provider.dart';
 import '../../../providers/user_provider.dart';
@@ -56,19 +58,51 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
             var data;
 
             return CupertinoPageScaffold(
+
                 navigationBar: CupertinoNavigationBar(
+                  // backgroundColor: Colors.red,
+
                   previousPageTitle: "back",
                   middle: Text("Edidiong"),
-                  trailing: CupertinoButton(
-                    onPressed: () {},
-                    child: Icon(CupertinoIcons.phone),
-                  ),
+
+                  trailing:
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.25,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            actionButton(false),
+                            actionButton(true)
+
+                          ],
+
+                      ),
+                    ),
+
+                  // ZegoSendCallInvitationButton(
+                  //   isVideoCall: true,
+                  //   resourceID: "zegouikit_call",    // For offline call notification
+                  //   invitees: [
+                  //     ZegoUIKitUser(
+                  //       id: widget.therapistUid!,
+                  //       name: therapistName,
+                  //     ),
+                  //     // ...
+                  //     // ZegoUIKitUser(
+                  //     //   id: targetUserID,
+                  //     //   name: targetUserName,
+                  //     // )
+                  //   ],
+                  // )
+
+
                 ),
                 child: SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
+
                         Expanded(
                           child: ListView(
                           reverse: true,
@@ -192,4 +226,19 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
     }
     return Alignment.topLeft;
   }
+
+  ZegoSendCallInvitationButton actionButton(bool isVideo) =>
+      ZegoSendCallInvitationButton(
+
+        iconSize:Size.fromHeight(35),
+        buttonSize: Size.fromWidth(40),
+        isVideoCall: isVideo,
+        resourceID: "zegouikit_call",
+        invitees: [
+          ZegoUIKitUser(
+            id: widget.therapistUid!,
+            name: therapistName,
+          ),
+        ],
+      );
 }

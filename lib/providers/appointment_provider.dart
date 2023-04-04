@@ -1,3 +1,5 @@
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:miked_care/features/appointment/pages/appoinment_page.dart';
 import 'package:miked_care/features/auth/models/user.dart';
@@ -22,14 +24,16 @@ class AppointmentProvider extends ChangeNotifier{
   UserProvider userProvider = UserProvider();
   late String appointmentId ;
   List appointments = [];
-
+  List done_appointments=[];
+  List caancelled_appointments=[];
+  List pending_appointments=[];
 
   AppointmentProvider(){
     _therapistService = TherapistService();
     _appointmentService = AppointmentService();
 
     getAllTherapists();
-    // getAppointments();
+    getAppointments();
   }
 
   // Future<void> setreviewid(List <dynamic> reviewIdss) async {
@@ -78,24 +82,61 @@ class AppointmentProvider extends ChangeNotifier{
   // Future<Users> getUserId() async {
   //  return await user;
   // }
-  Future<void> makeAppointment(appointment) async {
-    appointmentId = await _appointmentService.makeAppointment(appointment);
+  Future<void> makeAppointment(appointment,context) async {
+    appointmentId = await _appointmentService.makeAppointment(appointment,context);
     // username = user.name!;
+    await getAppointments();
     notifyListeners();
   }
-  Future<void> makePayment(payment) async {
-     await _appointmentService.makePayment(payment);
+  Future<void> makePayment(payment,context) async {
+     await _appointmentService.makePayment(payment,context);
     // username = user.name!;
-    notifyListeners();
+      getAppointments();
+
+     notifyListeners();
   }
   // List getAppointmentss()=> appointments;
 
- Future<List> getAppointments(String uid) async {
+ Future<List> getAppointments() async {
 
-   appointments = await _appointmentService.getAppointments(uid);
+   appointments = [];
+   caancelled_appointments = [];
+   done_appointments = [];
+   pending_appointments = [];
+   appointments = await _appointmentService.getAppointments(FirebaseAuth.instance.currentUser?.uid);
+   appointments.forEach((element){
+     if (element.status =='done' ){
+       done_appointments.add(element);
+     }else if(element.status == 'cancelled'){
+       caancelled_appointments.add(element);
+     }else {
+       pending_appointments.add(element);
+     }
+
+   });
+   // username = user.name!;
+   notifyListeners();
+   // print('apppppppppppppppppppppppp ${appointments.length}');
+   return appointments;
+  }
+  Future<void> cancelAppointment(Appointment appointment,context) async {
+
+    await _appointmentService.cancelAppointment(appointment,context);
     // username = user.name!;
+    await getAppointments();
+
     notifyListeners();
-    // print('apppppppppppppppppppppppp ${appointments.length}');
-    return appointments;
+  }
+  // Future<void> makePayment(payment) async {
+  //   await _appointmentService.makePayment(payment);
+  //   // username = user.name!;
+  //   getAppointments();
+  //   notifyListeners();
+  // }
+  Future<void> reshedule(appointment,context,data) async {
+    await _appointmentService.reshedule(appointment,context,data);
+    // username = user.name!;
+    getAppointments();
+    notifyListeners();
   }
 }

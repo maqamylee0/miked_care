@@ -5,5 +5,7 @@ class ImageAssetConstants{
   // static const String linkedIn='assets/images/linkedIn.png';
   // static const String flutter='assets/images/flutter.png';
   // static const String flutterCircle='assets/images/flutter_circle.png';
-  static const String account='assets/account_filled.png';
+  static const String account='assets/personimage.jpg';
+  // static const String account='assets/account_filled.png';
+
 }

@@ -7,8 +7,10 @@ import '../models/appointment.dart';
 import 'appointment_button_widget.dart';
 
 class AppointmentCard extends StatefulWidget {
-  const AppointmentCard({Key? key, required this.appointment,}) : super(key: key);
+  const AppointmentCard({Key? key, required this.appointment,required this.action}) : super(key: key);
   final Appointment appointment;
+  final String action;
+
   @override
   State<AppointmentCard> createState() => _AppointmentCardState();
 }
@@ -27,8 +29,9 @@ class _AppointmentCardState extends State<AppointmentCard> {
           Row(
             children: [
               Container(
+
                 decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage("assets/emily.jpg"), fit: BoxFit.cover),
+                    image: DecorationImage(image: AssetImage("assets/emily.jpg"), fit: BoxFit.contain),
                     borderRadius: BorderRadius.circular(10)
                 ),
                 height: 120,
@@ -75,12 +78,12 @@ class _AppointmentCardState extends State<AppointmentCard> {
           Container(
             // width: totalWidth * 0.6,
             child: Row(
-
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
 
-                Appointment_button(title:"Reschedule"),
-                SizedBox(width: 10,),
-                Appointment_button(title:"Cancel Appointment"),
+                (widget.action == 'cancel' || widget.action == 'active') ? Appointment_button(title:"Reschedule",appointment:widget.appointment):Container(),
+                (widget.action == 'active' ) ? Appointment_button(title:"Cancel Appointment",appointment:widget.appointment):Container(),
+                // (widget.appointment.paid == false && widget.action == 'active') ? Appointment_button(title:"PAY",appointment:widget.appointment):Container(),
 
               ],
             ),

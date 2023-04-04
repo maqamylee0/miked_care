@@ -54,8 +54,7 @@ class _MakePaymentPageState extends State<MakePaymentPage> {
      payment.time = TimeOfDay.now().toString();
      payment.date = DateTime.now().toString();
      payment.amount = "\$10.00";
-     appointmentProvider.makePayment(payment);
-    Navigator.pushNamed(context, 'home');
+     appointmentProvider.makePayment(payment,context);
   }
 
   @override
