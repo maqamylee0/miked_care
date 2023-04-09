@@ -77,27 +77,42 @@ class _HistoryPageState extends State<HistoryPage>with TickerProviderStateMixin 
 }
 
 class history_card extends StatelessWidget {
-  const history_card({
+   history_card({
     Key? key,
   }) : super(key: key);
+  Map sorted={};
 
   @override
   Widget build(BuildContext context) {
     final messageProvider = Provider.of<MessageProvider>(context);
+    for(Map m in messageProvider.chats){
+      if(sorted[m['senderId'].toString()]==null)
+        sorted[m['senderId'].toString()]=[];
 
+      sorted[m['senderId'].toString()].add(m);
+
+    }
     return Container(
       // padding: EdgeInsets.all(6),
       child:
-      ListView.builder(
 
-          physics: ScrollPhysics(),
-          // shrinkWrap: true,
-          itemCount:messageProvider.chats.length,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context,index){
-           // print("index ${messageProvider.chats.length}");
-            return HistoryCard( chatMessage :messageProvider.chats[index]);
-          }),
+      ListView(
+        shrinkWrap:true,
+        children: sorted.entries.map<Widget>((value){
+          return HistoryCard(chatMessage: value);
+        }).toList(),
+      )
+     ,
+      // ListView.builder(
+      //
+      //     physics: ScrollPhysics(),
+      //     // shrinkWrap: true,
+      //     itemCount:sorted.entries.length,
+      //     scrollDirection: Axis.vertical,
+      //     itemBuilder: (context,index){
+      //      // print("index ${messageProvider.chats.length}");
+      //       return HistoryCard( chatMessage :sorted.entries.);
+      //     }),
     );
   }
 }

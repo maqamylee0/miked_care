@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:miked_care/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
+import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 
 
 import '../../../Utils/constants.dart';
@@ -9,37 +10,34 @@ import '../../../providers/appointment_provider.dart';
 import '../../../providers/user_provider.dart';
 
 
-class VideoCall extends StatefulWidget {
-  const VideoCall({Key? key, required this.therapistUid}) : super(key: key);
- final String? therapistUid;
+class CallInvitationPage extends StatefulWidget {
+  const CallInvitationPage({Key? key, required this.username, required this.child }) : super(key: key);
+ final String username;
+ final Widget child;
   @override
-  State<VideoCall> createState() => _VideoCallState();
+  State<CallInvitationPage> createState() => _CallInvitationPageState();
 }
 
-class _VideoCallState extends State<VideoCall> {
+
+class _CallInvitationPageState extends State<CallInvitationPage> {
+
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
+    // final userProvider = Provider.of<UserProvider>(context);
+    return onUserLogin();
+  }
 
-    return ZegoUIKitPrebuiltCall(
-      appID: Statics.appId, // Fill in the appID that you get from ZEGOCLOUD Admin Console.
-      appSign: Statics.appSign, // Fill in the appSign that you get from ZEGOCLOUD Admin Console.
-      userID: 'user_id',
-      userName: 'user_name',
-      callID: '1',
-      // You can also use groupVideo/groupVoice/oneOnOneVoice to make more types of calls.
-      config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
-        // ..onOnlySelfInRoom = () => Navigator.of(context).pop(),
-    );;
-    //   ZegoUIKitPrebuiltCallWithInvitation(
-    //   appID: Statics.appId, /*input your AppID*/
-    //   appSign: Statics.appSign, /*input your AppSign*/
-    //   userID: userProvider.user.uid!,
-    //   userName: userProvider.user.name!,
-    //   plugins: [ZegoUIKitSignalingPlugin()],
-    // child: Container(
-    // child: Text('hii'),
-    // ),
-    // );
+  onUserLogin() {
+    /// 2.1. initialized ZegoUIKitPrebuiltCallInvitationService
+    /// when app's user is logged in or re-logged in
+    /// We recommend calling this method as soon as the user logs in to your app.
+    return ZegoUIKitPrebuiltCallInvitationService().init(
+      appID: Statics.appId,
+      appSign: Statics.appSign,
+      userID: widget.username,
+      userName: widget.username,
+      plugins: [ZegoUIKitSignalingPlugin()],
+
+    );
   }
 }

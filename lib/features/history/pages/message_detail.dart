@@ -30,7 +30,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     final messageProvider = Provider.of<MessageProvider>(context);
 
     return Scaffold(
@@ -106,7 +106,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                         Expanded(
                           child: ListView(
                           reverse: true,
-                          children: snapshot.data!.docs.map<Widget>(
+                          children: snapshot.data?.docs.map<Widget>(
                                 (DocumentSnapshot document) {
                               data = document.data()!;
                               // print(document.toString());
@@ -119,16 +119,16 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                                 child: ChatBubble(
                                   clipper: ChatBubbleClipper6(
                                     nipSize: 0,
-                                    radius: 0,
-                                    type: isSender(data['senderId'].toString(),user.user.uid)
+                                    radius: 20,
+                                    type: isSender(data['senderId'].toString(),userProvider.user.uid)
                                         ? BubbleType.sendBubble
                                         : BubbleType.receiverBubble,
                                   ),
-                                  alignment: getAlignment(data['senderId'].toString(),user.user.uid),
+                                  alignment: getAlignment(data['senderId'].toString(),userProvider.user.uid),
                                   margin: EdgeInsets.only(top: 20),
-                                  backGroundColor: isSender(data['senderId'].toString(),user.user.uid)
-                                      ? Color(0xFF08C187)
-                                      : Color(0xffE7E7ED),
+                                  backGroundColor: isSender(data['senderId'].toString(),userProvider.user.uid)
+                                      ? Color(0xFF29D2D4)
+                                      : Color(0xff9146d3),
                                   child: Container(
                                     constraints: BoxConstraints(
                                       maxWidth:
@@ -143,7 +143,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                                             Text(data['text'],
                                                 style: TextStyle(
                                                     color: isSender(
-                                                        data['senderId'].toString(),user.user.uid)
+                                                        data['senderId'].toString(),userProvider.user.uid)
                                                         ? Colors.white
                                                         : Colors.black),
                                                 maxLines: 100,
@@ -162,7 +162,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                                               style: TextStyle(
                                                   fontSize: 10,
                                                   color: isSender(
-                                                      data['senderId'].toString(),user.user.uid)
+                                                      data['senderId'].toString(),userProvider.user.uid)
                                                       ? Colors.white
                                                       : Colors.black),
                                             )
@@ -187,7 +187,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                             CupertinoButton(
                                 child: Icon(Icons.send_sharp),
                                 onPressed: () {
-                                  sendMessage(textController.text,user.user.uid,messageProvider.chatDocId);
+                                  sendMessage(textController.text,userProvider.user.uid,messageProvider.chatDocId, messageProvider);
                                 })
                           ],
                         )
@@ -203,7 +203,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
     );
   }
 
-  void sendMessage(String msg,userId,chatDocId) {
+  void sendMessage(String msg,userId,chatDocId, MessageProvider messageProvider) {
     if (msg == '') return;
         chats
         .doc(chatDocId).collection('messages').add({
@@ -214,7 +214,10 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
       'text': msg
     }).then((value) {
       textController.text = '';
+      messageProvider.getAllChats;
     });
+
+
   }
   bool isSender(String therapist,currentUserId) {
     return therapist == currentUserId;

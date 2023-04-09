@@ -1541,6 +1541,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  zego_uikit_signaling_plugin:
+    dependency: "direct main"
+    description:
+      name: zego_uikit_signaling_plugin
+      sha256: "4a4e1d629352869a65ecc99e1d2e644ddc254c100f15225702ea34af40a64256"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.3"
+  zego_zim:
+    dependency: transitive
+    description:
+      name: zego_zim
+      sha256: "563fb5ca95850d869fb59de4683202d6f7ac80e33e6eab2abe695479894984ad"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.1"
+  zego_zpns:
+    dependency: transitive
+    description:
+      name: zego_zpns
+      sha256: "631b1bf0065a89b9734b9b5a930bcfdf7d805a6f7cc9d8271cb083fe2621e711"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
 sdks:
   dart: ">=2.18.2 <3.0.0"
   flutter: ">=3.3.0"
