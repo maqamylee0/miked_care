@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +21,7 @@ import 'package:miked_care/providers/blog_provider.dart';
 import 'package:miked_care/providers/message_provider.dart';
 import 'package:miked_care/providers/user_provider.dart';
 import 'package:provider/provider.dart';
+// import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 import 'features/appointment/pages/make_payment_page.dart';
 import 'features/blogs/pages/blog_page.dart';
@@ -36,25 +36,32 @@ final navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Hive.initFlutter();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => UserProvider()),
-      ChangeNotifierProvider(create: (context) => AppointmentProvider()),
-      ChangeNotifierProvider(create: (context) => BlogProvider()),
-      ChangeNotifierProvider(create: (context) => MessageProvider()),
+  final navigatorKey = GlobalKey<NavigatorState>();
+
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => AppointmentProvider()),
+        ChangeNotifierProvider(create: (context) => BlogProvider()),
+        ChangeNotifierProvider(create: (context) => MessageProvider()),
 
 
-    ],
-    child: MyApp(),
-  ));
-  //     DevicePreview(builder: (BuildContext context) => MyApp()));
+      ],
+      child: MyApp(),
+    ));
+
+
+  //
+    //     DevicePreview(builder: (BuildContext context) => MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // final GlobalKey<NavigatorState> navigatorKey;
+
+  const MyApp({super.key, });
   @override
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;

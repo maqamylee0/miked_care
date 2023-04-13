@@ -174,7 +174,7 @@ class _BookAppointmentState extends State<BookAppointment> {
 
                             );
                             Navigator.push(context,MaterialPageRoute(builder:
-                                (context)=>MessageDetailPage(therapistUid:widget.therapistInfo.therapistUid)));
+                                (context)=>MessageDetailPage(therapistUid:widget.therapistInfo.therapistUid!)));
                           },
                           child: Text(
                             "Chat Now",

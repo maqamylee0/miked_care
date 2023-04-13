@@ -152,10 +152,10 @@ class Auth{
   Future<Users> getUserDetails() async {
     late Users doc ;
     //     builder: (context) => const Center(child: CircularProgressIndicator()));
-    final prefs = await SharedPreferences.getInstance();
-    final userid = prefs.getString('userid');
-    final username = prefs.getString('username');
-    final photoUrl = prefs.getString('photoUrl');
+    // final prefs = await SharedPreferences.getInstance();
+    final userid = _auth.currentUser?.uid;
+    // final username = prefs.getString('username');
+    // final photoUrl = prefs.getString('photoUrl');
 
     try{
       FirebaseFirestore mFirebaseFirestore = FirebaseFirestore.instance;

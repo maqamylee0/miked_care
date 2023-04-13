@@ -18,14 +18,14 @@ class IconCard extends StatelessWidget {
           decoration: new BoxDecoration(
             boxShadow: [
               new BoxShadow(
-                color: Color(0x7CCCCCCB),
+                color: Color(0xF6EBEBE8),
                 blurRadius: 20.0,
               ),
             ],
           ),
           child: Card(
 
-              elevation: 10,
+              elevation: 2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,7 +43,7 @@ class IconCard extends StatelessWidget {
                   SizedBox(height: 5,),
                   Padding(
                     padding: EdgeInsets.all(3.0),
-                    child: Text("$title",style: TextStyle(fontWeight: FontWeight.bold),),
+                    child: Text("$title",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12),),
                   )
                 ],
 

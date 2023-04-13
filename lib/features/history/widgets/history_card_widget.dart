@@ -9,7 +9,7 @@ import '../../../providers/user_provider.dart';
 
 class HistoryCard extends StatefulWidget {
   const HistoryCard(  {Key? key,required this.chatMessage }) : super(key: key);
- final  Map<String, dynamic>chatMessage;
+ final  MapEntry<dynamic, dynamic>chatMessage;
   @override
   State<HistoryCard> createState() => _HistoryCardState();
 }
@@ -26,27 +26,55 @@ class _HistoryCardState extends State<HistoryCard> {
     var totalWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () async {
-        await chats.where("users" , isEqualTo: { '${userProvider.user.uid}': null,'${widget.chatMessage['therapistUid']}':null })
-            .limit(1)
-            .get()
-            .then(
-                (QuerySnapshot querysnapshot) {
-              if(querysnapshot.docs.isNotEmpty ){
-                // print("hiiiiiiii "+querysnapshot.docs.single.id);
+      print('1d1${userProvider.user.uid}');
+      print('1d2${widget.chatMessage.value[0]['patientUid']}');
 
-                messageProvider.setchatDocId(querysnapshot.docs.single.id);
-              }else{
-                print("id1:${userProvider.user.uid} id2:${widget.chatMessage['therapistUid']}");
+      if(userProvider.user.uid == widget.chatMessage.value[0]['therapistUid'] )
+          {
+            await chats.where("users" , isEqualTo: { '${widget.chatMessage.value[0]['patientUid']}': null,'${ userProvider.user.uid}':null })
+                .limit(1)
+                .get()
+                .then(
+                    (QuerySnapshot querysnapshot) {
+                  if(querysnapshot.docs.isNotEmpty ){
+                    // print("hiiiiiiii "+querysnapshot.docs.single.id);
+
+                    messageProvider.setchatDocId(querysnapshot.docs.single.id);
+                  }else{
+                    print("id1:${widget.chatMessage.value[0]['senderId']} id2:${userProvider.user.uid}");
+                  }
+
+                }
+
+            );
+            Navigator.push(context,
+                MaterialPageRoute(builder:
+                    (context)=>MessageDetailPage(therapistUid: widget.chatMessage.value[0]['therapistUid'])));
+          }else{
+          await chats.where("users" , isEqualTo: { '${userProvider.user.uid}': null,'${widget.chatMessage.value[0]['therapistUid'] }':null })
+              .limit(1)
+              .get()
+              .then(
+                  (QuerySnapshot querysnapshot) {
+                if(querysnapshot.docs.isNotEmpty ){
+                  // print("hiiiiiiii "+querysnapshot.docs.single.id);
+
+                  messageProvider.setchatDocId(querysnapshot.docs.single.id);
+                }else{
+                  print("id1:${userProvider.user.uid} id2:${widget.chatMessage.value[0]['therapistUid']}");
+                }
+
               }
 
-            }
+          );
+          Navigator.push(context,
+              MaterialPageRoute(builder:
+                  (context)=>MessageDetailPage(therapistUid: widget.chatMessage.value[0]['therapistUid'])));
+        }
 
-        );
-        Navigator.push(context,
-            MaterialPageRoute(builder:
-        (context)=>MessageDetailPage(therapistUid: widget.chatMessage['therapistUid'])));
              },
-      child: Container(
+      child:
+      Container(
         child:
             Column(
               children: [
@@ -72,13 +100,13 @@ class _HistoryCardState extends State<HistoryCard> {
 
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(4,4,4,4),
-                                    child: Text("${widget.chatMessage['therapistName']}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
+                                    child: Text("${widget.chatMessage.value[0]['therapistName']}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),
                                   ),
 
 
-                              SizedBox(width: 5,),
+                              SizedBox(width: 2,),
 
-                                  Text('${widget.chatMessage['createdOn']}',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17))
+                                  Text('${widget.chatMessage.value[0]['createdOn']}',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15))
 
 
                             ],
@@ -88,7 +116,7 @@ class _HistoryCardState extends State<HistoryCard> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
 
-                              Text("${widget.chatMessage['text']}"),
+                              Text("${widget.chatMessage.value[0]['text']}"),
 
 
                               SizedBox(width: 10,),

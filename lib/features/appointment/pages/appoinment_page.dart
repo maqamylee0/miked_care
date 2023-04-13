@@ -95,7 +95,7 @@ class CancelledView extends StatelessWidget {
     final appointmentProvider = Provider.of<AppointmentProvider>(context);
     final userProvider = Provider.of<UserProvider>(context);
     Stream<List> getAppointements () async* {
-       appointments = await  appointmentProvider.getAppointments(userProvider.user.uid!) ;
+       appointments = await  appointmentProvider.caancelled_appointments ;
 
      yield appointments;
     }
@@ -113,7 +113,7 @@ class CancelledView extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemBuilder: (context,index){
 
-                return AppointmentCard(appointment: appointments[index],);
+                return AppointmentCard(appointment: appointments[index], action:"cancel");
               }),
         ):Container();
       }
@@ -134,7 +134,7 @@ class FinishedView extends StatelessWidget {
     final appointmentProvider = Provider.of<AppointmentProvider>(context);
     // List appointments = appointmentProvider.appointments;
     Stream<List> getAppointements () async* {
-      appointments = await  appointmentProvider.getAppointments(userProvider.user.uid!) ;
+      appointments = await  appointmentProvider.done_appointments ;
 
       yield appointments;
     }
@@ -151,7 +151,7 @@ class FinishedView extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemBuilder: (context,index){
 
-                return AppointmentCard(appointment: appointments[index]);
+                return AppointmentCard(appointment: appointments[index],action: 'finished',);
               }),
         ):Container();
       }
@@ -171,7 +171,7 @@ class UpcomingView extends StatelessWidget {
     final userProvider = Provider.of<UserProvider>(context);
 
     Stream<List> getAppointements () async* {
-      appointments = await  appointmentProvider.getAppointments(userProvider.user.uid!) ;
+      appointments = await  appointmentProvider.pending_appointments;
 
       yield appointments;
     }
@@ -188,7 +188,7 @@ class UpcomingView extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context,index){
 
-                    return AppointmentCard(appointment: appointments[index]);
+                    return AppointmentCard(appointment: appointments[index],action: 'active',);
                   })
         ):Container();
       }

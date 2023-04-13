@@ -55,17 +55,18 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
      appointment.kind = kind[selectedRadioTile-1];
      appointment.type = type[selectedRadioTile2-1];
      // appointment.userId =
-     appointment.status = 'confirmed';
+     appointment.status = 'pending';
      appointment.therapistId = widget.therapist?.therapistUid;
      appointment.therapist = widget.therapist?.name;
+
+
      try{
-        appointmentProvider.makeAppointment(appointment);
+        appointmentProvider.makeAppointment(appointment,context);
         // print('hiiiiiiiiiiiiiiiii ${appointment.kind}');
         // print('hiiiiiiiiiiiiiiiii ${appointment.type}');
         // print('hiiiiiiiiiiiiiiiii ${appointment.date}');
         // print('hiiiiiiiiiiiiiiiii ${appointment.time}');
 
-       Navigator.pushNamed(context, 'make_payment',);
 
      }catch(e){
        print('e');
@@ -344,7 +345,7 @@ class _AppointmentFormPageState extends State<AppointmentFormPage> {
           else{
          min = value!.minute.toString();
           }
-          appointment.time = "${value!.hour} : ${min} ${time.period.toString().split('.')[1].toUpperCase()}" ;
+          appointment.time = "${value!.hour}:${min} ${time.period.toString().split('.')[1].toUpperCase()}" ;
         }
         ));
 

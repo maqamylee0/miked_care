@@ -23,7 +23,7 @@ class MessageService {
         Map<String, dynamic> names = data['names'];
         names.remove(currentUser);
 
-        return {'docid': doc.id, 'name': names.values.first};
+        return {'docid': doc.id, 'therapistName': names.values.last, 'patientUid':names.keys.first, 'patientName':names.values.first};
       }).toList();
       // print("wow ${chatDocuments.length}");
       chatDocuments.forEach((doc) {
@@ -42,11 +42,14 @@ class MessageService {
             DateTime ti = t.toDate();
             var time = DateFormat.jm().format(ti);
             // String time = ' ${ti.add_jm()}';
-            messages = {
-              'text': snapshot.docs.first['text'],
-              'createdOn': time,
-              'therapistName': doc['name'],
-              'therapistUid': snapshot.docs.first['therapistUid']
+              messages = {
+                'text': snapshot.docs.first['text'],
+                'createdOn': time,
+                'therapistName': doc['therapistName'],
+                'therapistUid': snapshot.docs.first['therapistUid'],
+                'patientName': doc['patientName'],
+                'patientUid': doc['patientUid']
+
             };
           }
           chatMessages.add(messages);
@@ -55,6 +58,7 @@ class MessageService {
     });
     // print('loveeeeeeeeee ${chatMessages}');
     // print('giiii $messages');
+    print('sssssssss${chatMessages}');
 
     return chatMessages;
   }

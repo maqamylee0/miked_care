@@ -30,7 +30,7 @@ class UserProvider extends ChangeNotifier{
     isLoaded = true;
     photonull = false;
     username  = user.name!;
-    photoUrl = user.photoUrl!;
+    photoUrl = 'assets/personimage/emily.jpg';
     if (kDebugMode) {
       print(isLoaded);
     }

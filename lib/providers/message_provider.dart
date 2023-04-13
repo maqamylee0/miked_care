@@ -6,10 +6,11 @@ class MessageProvider extends ChangeNotifier{
   String therapistName = "";
   late MessageService messageService;
   List<Map<String, dynamic>> chats = [];
+  List<Map<String, dynamic>> allChats = [];
 
-  MessageProvider(){
+  MessageProvider()  {
     messageService = MessageService();
-    getAllChats();
+      getAllChats();
   }
   void setchatDocId(String id){
     chatDocId = id;
@@ -17,8 +18,43 @@ class MessageProvider extends ChangeNotifier{
   }
 
    Future<void> getAllChats() async {
-    chats = await messageService.getAllChats();
-    print('heloooooooo${chats.length}');
+     // List <String> chatIds = [];
     notifyListeners();
+    print('sssssssss${chats.length}');
+    chats = await groupChats();
+
+    //
+    //  allChats.forEach((element)  {
+    //
+    //   print('rrrrrrrrrrrrrrrr${element['therapistUid']}');
+    //   if (chatIds.contains(element['therapistUid'])){
+    //     ;
+    //   }else{
+    //     chats.add(element);
+    //     chatIds.add(element['therapistUid']);
+    //   }
+    // });
+    print('kkkkkkkkkkkkkkkkk ${chats.length}');
+    notifyListeners();
+   }
+
+  Future<List<Map<String, dynamic>>> groupChats() async {
+    List <String> chatIds = [];
+    // List<Map<String, dynamic>> chats2 = [];
+    allChats = await messageService.getAllChats();
+
+     allChats.forEach((element) {
+
+      print('rrrrrrrrrrrrrrrr${element['therapistUid']}');
+      if (chatIds.contains(element['therapistUid'])){
+          ;
+      }else{
+        chats.add(element);
+        chatIds.add(element['therapistUid']);
+      }
+    });
+    print('kkkkkkkkkkkkkkkkk $chats');
+    notifyListeners();
+     return allChats;
    }
 }

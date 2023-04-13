@@ -63,7 +63,7 @@ class TherapistService {
   }
 
   Future<Users> getUserDetails(String uid) async {
-    late Users doc;
+     Users doc = Users();
     try {
       FirebaseFirestore mFirebaseFirestore = FirebaseFirestore.instance;
 

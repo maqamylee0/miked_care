@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_6.dart';
+import 'package:miked_care/features/history/pages/video_call.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 import '../../../providers/message_provider.dart';
 import '../../../providers/user_provider.dart';
@@ -28,7 +30,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     final messageProvider = Provider.of<MessageProvider>(context);
 
     return Scaffold(
@@ -56,23 +58,55 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
             var data;
 
             return CupertinoPageScaffold(
+
                 navigationBar: CupertinoNavigationBar(
+                  // backgroundColor: Colors.red,
+
                   previousPageTitle: "back",
                   middle: Text("Edidiong"),
-                  trailing: CupertinoButton(
-                    onPressed: () {},
-                    child: Icon(CupertinoIcons.phone),
-                  ),
+
+                  trailing:
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.25,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            actionButton(false),
+                            actionButton(true)
+
+                          ],
+
+                      ),
+                    ),
+
+                  // ZegoSendCallInvitationButton(
+                  //   isVideoCall: true,
+                  //   resourceID: "zegouikit_call",    // For offline call notification
+                  //   invitees: [
+                  //     ZegoUIKitUser(
+                  //       id: widget.therapistUid!,
+                  //       name: therapistName,
+                  //     ),
+                  //     // ...
+                  //     // ZegoUIKitUser(
+                  //     //   id: targetUserID,
+                  //     //   name: targetUserName,
+                  //     // )
+                  //   ],
+                  // )
+
+
                 ),
                 child: SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
+
                         Expanded(
                           child: ListView(
                           reverse: true,
-                          children: snapshot.data!.docs.map<Widget>(
+                          children: snapshot.data?.docs.map<Widget>(
                                 (DocumentSnapshot document) {
                               data = document.data()!;
                               // print(document.toString());
@@ -85,16 +119,16 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                                 child: ChatBubble(
                                   clipper: ChatBubbleClipper6(
                                     nipSize: 0,
-                                    radius: 0,
-                                    type: isSender(data['senderId'].toString(),user.user.uid)
+                                    radius: 20,
+                                    type: isSender(data['senderId'].toString(),userProvider.user.uid)
                                         ? BubbleType.sendBubble
                                         : BubbleType.receiverBubble,
                                   ),
-                                  alignment: getAlignment(data['senderId'].toString(),user.user.uid),
+                                  alignment: getAlignment(data['senderId'].toString(),userProvider.user.uid),
                                   margin: EdgeInsets.only(top: 20),
-                                  backGroundColor: isSender(data['senderId'].toString(),user.user.uid)
-                                      ? Color(0xFF08C187)
-                                      : Color(0xffE7E7ED),
+                                  backGroundColor: isSender(data['senderId'].toString(),userProvider.user.uid)
+                                      ? Color(0xFF29D2D4)
+                                      : Color(0xff9146d3),
                                   child: Container(
                                     constraints: BoxConstraints(
                                       maxWidth:
@@ -109,7 +143,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                                             Text(data['text'],
                                                 style: TextStyle(
                                                     color: isSender(
-                                                        data['senderId'].toString(),user.user.uid)
+                                                        data['senderId'].toString(),userProvider.user.uid)
                                                         ? Colors.white
                                                         : Colors.black),
                                                 maxLines: 100,
@@ -128,7 +162,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                                               style: TextStyle(
                                                   fontSize: 10,
                                                   color: isSender(
-                                                      data['senderId'].toString(),user.user.uid)
+                                                      data['senderId'].toString(),userProvider.user.uid)
                                                       ? Colors.white
                                                       : Colors.black),
                                             )
@@ -153,7 +187,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                             CupertinoButton(
                                 child: Icon(Icons.send_sharp),
                                 onPressed: () {
-                                  sendMessage(textController.text,user.user.uid,messageProvider.chatDocId);
+                                  sendMessage(textController.text,userProvider.user.uid,messageProvider.chatDocId, messageProvider);
                                 })
                           ],
                         )
@@ -169,7 +203,7 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
     );
   }
 
-  void sendMessage(String msg,userId,chatDocId) {
+  void sendMessage(String msg,userId,chatDocId, MessageProvider messageProvider) {
     if (msg == '') return;
         chats
         .doc(chatDocId).collection('messages').add({
@@ -180,7 +214,10 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
       'text': msg
     }).then((value) {
       textController.text = '';
+      messageProvider.getAllChats;
     });
+
+
   }
   bool isSender(String therapist,currentUserId) {
     return therapist == currentUserId;
@@ -192,4 +229,19 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
     }
     return Alignment.topLeft;
   }
+
+  ZegoSendCallInvitationButton actionButton(bool isVideo) =>
+      ZegoSendCallInvitationButton(
+
+        iconSize:Size.fromHeight(35),
+        buttonSize: Size.fromWidth(40),
+        isVideoCall: isVideo,
+        resourceID: "zegouikit_call",
+        invitees: [
+          ZegoUIKitUser(
+            id: widget.therapistUid!,
+            name: therapistName,
+          ),
+        ],
+      );
 }

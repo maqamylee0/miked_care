@@ -14,7 +14,9 @@ class TherapistItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 300,
         decoration: new BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             new BoxShadow(
               color: Color(0x7CCCCCCB),
@@ -22,12 +24,12 @@ class TherapistItem extends StatelessWidget {
             ),
           ],
         ),
-        height: 130,
+        // height: 110,
         // width: MediaQuery.of(context).size.width*0.7,
         child: Card(
-          elevation: 3,
+          // elevation: 2,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(5.0),
             child: Row(
               children: [
                 Container(
@@ -35,12 +37,12 @@ class TherapistItem extends StatelessWidget {
                     radius: 40,
                     backgroundColor: Colors.transparent,
                     child: SizedBox(
-                        width: 90,
-                        height: 90,
+                        width: 70,
+                        height: 70,
                         child: ClipOval(
                           child: Image.asset(
                             "assets/personimage/emily.jpg",
-                            height: 200,
+                            height: 150,
                             width: 200,
                           ),
                         )),
@@ -63,7 +65,7 @@ class TherapistItem extends StatelessWidget {
                           "${therapistInfo.name}\n"
                               "${therapistInfo.designation}",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.bold,fontSize: 14
                           ),
                           textAlign: TextAlign.start,
                         )),
@@ -80,7 +82,7 @@ class TherapistItem extends StatelessWidget {
                           child: Text(
                             "Fee : #30,000",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,fontSize: 14),
                           ),
                         ),
                         TextButton(
@@ -95,7 +97,7 @@ class TherapistItem extends StatelessWidget {
                             "View Profile",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.cyanAccent),
+                                color: Colors.cyanAccent,fontSize: 13),
                           ),
                         )
                       ],
