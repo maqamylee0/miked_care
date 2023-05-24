@@ -3,8 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  audioplayers_linux
-  awesome_notifications
+  flutter_webrtc
+  rich_clipboard_linux
   smart_auth
   url_launcher_linux
 )

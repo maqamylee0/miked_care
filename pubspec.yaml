@@ -70,9 +70,17 @@ dependencies:
   flutter_launcher_icons: ^0.11.0
   status_alert:
   bot_toast: ^4.0.3
+  videosdk:
+  rich_clipboard: ^1.0.1
+  clipboard: ^0.1.3
 #  zego_uikit_prebuilt_call:
-  zego_uikit_prebuilt_call: ^3.0.0-dev.1
-  zego_uikit_signaling_plugin: ^2.0.3
+#  zego_uikit_prebuilt_call: ^1.4.2
+#  zego_uikit_signaling_plugin: ^1.4.0
+#  zego_uikit_prebuilt_call:
+#  zego_uikit_signaling_plugin:
+#  agora_uikit: ^1.3.3
+#  agora_rtc_engine: ^6.1.1
+#  zego_express_engine: ^3.4.2+1-private.233
 
 dev_dependencies:
   flutter_test:
