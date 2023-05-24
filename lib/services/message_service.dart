@@ -23,7 +23,7 @@ class MessageService {
         Map<String, dynamic> names = data['names'];
         names.remove(currentUser);
 
-        return {'docid': doc.id, 'therapistName': names.values.last, 'patientUid':names.keys.first, 'patientName':names.values.first};
+        return {'docid': doc.id, 'therapistName': names.values.last, 'patientUid': names.keys.first, 'patientName': names.values.first};
       }).toList();
       // print("wow ${chatDocuments.length}");
       chatDocuments.forEach((doc) {

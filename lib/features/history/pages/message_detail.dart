@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -5,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_6.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:miked_care/features/history/pages/video_call.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
-import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 import '../../../providers/message_provider.dart';
 import '../../../providers/user_provider.dart';
@@ -71,29 +72,16 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            actionButton(false),
-                            actionButton(true)
+                            IconButton(onPressed: (){
+                             Navigator.push(context, MaterialPageRoute(builder: (context)=> VideoSDKQuickStart()));
+                            }, icon:  Icon(CupertinoIcons.phone))
 
                           ],
 
                       ),
                     ),
 
-                  // ZegoSendCallInvitationButton(
-                  //   isVideoCall: true,
-                  //   resourceID: "zegouikit_call",    // For offline call notification
-                  //   invitees: [
-                  //     ZegoUIKitUser(
-                  //       id: widget.therapistUid!,
-                  //       name: therapistName,
-                  //     ),
-                  //     // ...
-                  //     // ZegoUIKitUser(
-                  //     //   id: targetUserID,
-                  //     //   name: targetUserName,
-                  //     // )
-                  //   ],
-                  // )
+
 
 
                 ),
@@ -111,65 +99,86 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                               data = document.data()!;
                               // print(document.toString());
                               if (kDebugMode) {
-                                print(data['text']);
+                                print(data);
                               }
                               return Padding(
                                 padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: ChatBubble(
-                                  clipper: ChatBubbleClipper6(
-                                    nipSize: 0,
-                                    radius: 20,
-                                    type: isSender(data['senderId'].toString(),userProvider.user.uid)
-                                        ? BubbleType.sendBubble
-                                        : BubbleType.receiverBubble,
-                                  ),
-                                  alignment: getAlignment(data['senderId'].toString(),userProvider.user.uid),
-                                  margin: EdgeInsets.only(top: 20),
-                                  backGroundColor: isSender(data['senderId'].toString(),userProvider.user.uid)
-                                      ? Color(0xFF29D2D4)
-                                      : Color(0xff9146d3),
-                                  child: Container(
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                      MediaQuery.of(context).size.width * 0.7,
+
+
+                                  child: ChatBubble(
+                                    clipper: ChatBubbleClipper6(
+                                      nipSize: 0,
+                                      radius: 20,
+                                      type: isSender(data['senderId'].toString(),userProvider.user.uid)
+                                          ? BubbleType.sendBubble
+                                          : BubbleType.receiverBubble,
                                     ),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                          children: [
-                                            Text(data['text'],
+                                    alignment: getAlignment(data['senderId'].toString(),userProvider.user.uid),
+                                    margin: EdgeInsets.only(top: 20),
+                                    backGroundColor: isSender(data['senderId'].toString(),userProvider.user.uid)
+                                        ? Color(0xFF29D2D4)
+                                        : Color(0xff9146d3),
+                                    child: Container(
+                                      constraints: BoxConstraints(
+                                        maxWidth:
+                                        MediaQuery.of(context).size.width * 0.7,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: MediaQuery.of(context).size.width * 0.7,
+                                                padding : EdgeInsets.all(10),
+                                                child: InkWell(
+                                                  onLongPress: (){
+                                                    var index = snapshot.data?.docs.indexOf(data);
+                                                    print(index);
+                                                    FlutterClipboard.copy(snapshot.data?.docs[index]['text']).then(( value ) {
+                                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                        content: Text('Copied To Clipboard'),
+                                                      )
+                                                      );});
+                                                  },
+
+                                                  child: Text(data['text'],
+                                                      textAlign: TextAlign.left
+                                                      ,
+                                                      style: TextStyle(
+                                                          color: isSender(
+                                                              data['senderId'].toString(),userProvider.user.uid)
+                                                              ? Colors.white
+                                                              : Colors.black),
+                                                      maxLines: 100,
+                                                      overflow: TextOverflow.ellipsis),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                data['createdOn'] == null
+                                                    ? DateTime.now().toString()
+                                                    : data['createdOn']
+                                                    .toDate()
+                                                    .toString(),
                                                 style: TextStyle(
+                                                    fontSize: 10,
                                                     color: isSender(
                                                         data['senderId'].toString(),userProvider.user.uid)
                                                         ? Colors.white
                                                         : Colors.black),
-                                                maxLines: 100,
-                                                overflow: TextOverflow.ellipsis)
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              data['createdOn'] == null
-                                                  ? DateTime.now().toString()
-                                                  : data['createdOn']
-                                                  .toDate()
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: isSender(
-                                                      data['senderId'].toString(),userProvider.user.uid)
-                                                      ? Colors.white
-                                                      : Colors.black),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+
                                   ),
                                 ),
                               );
@@ -180,8 +189,17 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              child: CupertinoTextField(
-                                controller: textController,
+                              child: InkWell(
+                                onLongPress: (){
+                                  FlutterClipboard.paste().then((value) {
+                                    setState(() {
+                                      textController.text = value;
+                                    });
+                                  });
+                                },
+                                child: CupertinoTextField(
+                                  controller: textController,
+                                ),
                               ),
                             ),
                             CupertinoButton(
@@ -230,18 +248,4 @@ class _MessageDetailPageState extends State<MessageDetailPage> {
     return Alignment.topLeft;
   }
 
-  ZegoSendCallInvitationButton actionButton(bool isVideo) =>
-      ZegoSendCallInvitationButton(
-
-        iconSize:Size.fromHeight(35),
-        buttonSize: Size.fromWidth(40),
-        isVideoCall: isVideo,
-        resourceID: "zegouikit_call",
-        invitees: [
-          ZegoUIKitUser(
-            id: widget.therapistUid!,
-            name: therapistName,
-          ),
-        ],
-      );
 }

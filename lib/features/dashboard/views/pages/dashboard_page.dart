@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,56 +23,56 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return
 
-     Scaffold(
-        body: IndexedStack(
-          children: [
-            HomePage(),
-            AppointmentPage(),
-            HistoryPage(),
-            BlogPage(),
-            ProfilePage()
-          ],
-          index: _currentIndex,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() => _currentIndex = index);
-          },
-          items: const [
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.house,
-                  color: Colors.black,
-                ),
-                label: "Home"),
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.rectangleList,
-                  color: Colors.black,
-                ),
-                label: "Appointment"),
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.clock,
-                  color: Colors.black,
-                ),
-                label: "History"),
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.quoteRight,
-                  color: Colors.black,
-                ),
-                label: "Blogs"),
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.user,
-                  color: Colors.black,
-                ),
-                label: "Profile")
-          ],
-        ),
-      );
 
+        Scaffold(
+            body: IndexedStack(
+              children: [
+                HomePage(),
+                AppointmentPage(),
+                HistoryPage(),
+                BlogPage(),
+                ProfilePage()
+              ],
+              index: _currentIndex,
+            ),
+
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: _currentIndex,
+              onTap: (index) {
+                setState(() => _currentIndex = index);
+              },
+              items: const [
+                BottomNavigationBarItem(
+                    icon: FaIcon(
+                      FontAwesomeIcons.house,
+                      color: Colors.black,
+                    ),
+                    label: "Home"),
+                BottomNavigationBarItem(
+                    icon: FaIcon(
+                      FontAwesomeIcons.rectangleList,
+                      color: Colors.black,
+                    ),
+                    label: "Appointment"),
+                BottomNavigationBarItem(
+                    icon: FaIcon(
+                      FontAwesomeIcons.clock,
+                      color: Colors.black,
+                    ),
+                    label: "History"),
+                BottomNavigationBarItem(
+                    icon: FaIcon(
+                      FontAwesomeIcons.quoteRight,
+                      color: Colors.black,
+                    ),
+                    label: "Blogs"),
+                BottomNavigationBarItem(
+                    icon: FaIcon(
+                      FontAwesomeIcons.user,
+                      color: Colors.black,
+                    ),
+                    label: "Profile")
+              ],
+            ));
   }
 }
