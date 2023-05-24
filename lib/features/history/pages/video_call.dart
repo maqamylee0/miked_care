@@ -58,6 +58,7 @@
 // //}
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
+import '../../../constants.dart';
 import 'api.dart';
 import 'join_screen.dart';
 import 'room_screen.dart';
@@ -100,7 +101,7 @@ class _VideoSDKQuickStartState extends State<VideoSDKQuickStart> {
         child: isRoomActive
             ? RoomScreen(
           roomId: roomId,
-          token: token,
+          token: Statics.token,
           leaveRoom: () {
             setState(() => isRoomActive = false);
           },
